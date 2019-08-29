@@ -3,4 +3,4 @@ BootStrap extended
 
 ## A BootStrap extension application
 
-Added new featured to BS components for further sites developments
+Added new features to BS components for further site developments
