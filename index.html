@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>A landing page</title>
+    <title>Landing page</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -20,14 +20,14 @@
       <script src="js/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body>    
     <div id="top"></div>
     
     <header class="bg-primary">
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            <nav class="navbar navbar-default" data-spy="scroll">
+            <nav class="navbar navbar-default">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
                 <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Site logo" /></a>
@@ -41,14 +41,15 @@
               </div>                        
               
               <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="navbar-collapse collapse" id="navbar-xs" aria-expanded="false" style="height: 0px;">
-                <ul class="nav navbar-nav navbar-right">
+              <div class="navbar-collapse collapse" id="navbar-xs" aria-expanded="false">
+                <ul class="nav navbar-nav navbar-right" data-scroll="navbar">
                   <!-- CMS nav -->
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Our Services</a></li>
-                  <li><a href="#">News</a></li>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="#our-services">Our Services</a></li>
+                  <li><a href="#our-team">Our Team</a></li>
+                  <li><a href="#news">News</a></li>
                   <!-- /nav -->
-                  <li><a href="#" class="btn btn-default" title="Join our Talent Network">Contact Us</a></li>
+                  <li><a href="#contact-us" class="btn btn-default bg-tertiary" title="Join our Talent Network">Contact Us</a></li>
                 </ul>
               </div>                        
             </nav>
@@ -63,12 +64,16 @@
           <div class="row">
             <div class="col-xs-12">
               <div class="title-wrapper">
-                <h1 class="hero-title text-uppercase">
-                  A cool company slogan here
+                <h1 class="hero-title text-uppercase color-secondary ani-fade-top" data-spy="scroll">
+                  A cool <span class="color-tertiary">company</span> <br class="visible-xs" /> slogan here
                 </h1>
                 
-                <p>
+                <p class="title-parr">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, Ut enim.
+                </p>
+                
+                <p class="xs-text-center">
+                  <a href="#" class="btn btn-primary">Learn more</a>
                 </p>
               </div>
             </div>
@@ -80,9 +85,29 @@
         <div class="container">
           <div class="row about-cards">
             <div class="col-sm-4">
-              <div class="card">
+              <div class="card bg-card-01">
+                 <div class="card-cont">
+                   <div class="overlay">
+                     <h3 class="color-tertiary">
+                       A heading title
+                     </h3>
+                     
+                     <p>
+                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
+                     </p>
+                     
+                     <p>
+                       <a href="#"><i class="fa fa-caret-right color-tertiary" aria-hidden="true"></i>Read more</a>
+                     </p>
+                   </div>
+                 </div>
+              </div>
+            </div>
+            
+            <div class="col-sm-4">
+              <div class="card bg-card-02">
                 <div class="card-cont">
-                  <h3>
+                  <h3 class="color-tertiary">
                     A heading title
                   </h3>
                   
@@ -91,16 +116,16 @@
                   </p>
                   
                   <p>
-                    <a href="#"><span class="read-arrow"></span>Read more</a>
+                    <a href="#"><i class="fa fa-caret-right color-tertiary" aria-hidden="true"></i>Read more</a>
                   </p>
                 </div>
               </div>
             </div>
             
             <div class="col-sm-4">
-              <div class="card">
+              <div class="card bg-card-03">
                 <div class="card-cont">
-                  <h3>
+                  <h3 class="color-tertiary">
                     A heading title
                   </h3>
                   
@@ -109,34 +134,20 @@
                   </p>
                   
                   <p>
-                    <a href="#"><span class="read-arrow"></span>Read more</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-sm-4">
-              <div class="card">
-                <div class="card-cont">
-                  <h3>
-                    A heading title
-                  </h3>
-                  
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.
-                  </p>
-                  
-                  <p>
-                    <a href="#"><span class="read-arrow"></span>Read more</a>
+                    <a href="#"><i class="fa fa-caret-right color-tertiary" aria-hidden="true"></i>Read more</a>
                   </p>
                 </div>
               </div>
             </div>
           </div>
           
-          <div class="row">
-            <div class="col-sm-7">
-              <h2>
+          <div class="row">          
+            <div class="col-sm-5 col-sm-push-7">
+              <img src="img/who.png" class="img-responsive img-center about-pinup" />
+            </div>
+            
+            <div class="col-sm-7 col-sm-pull-5">
+              <h2 class="sub-title color-secondary">
                 A new subtitle with a meaningful content
               </h2>
               
@@ -153,37 +164,458 @@
               </p>
             </div>
             
-            <div class="col-sm-5">
-              <img src="img/who.png" class="img-responsive img-center" />
-            </div>
           </div>
         </div>
       </section>
       
-     <section class="our-services">
+     <section id="our-services" class="bg-white">
        <div class="container">
          <div class="row">
-           <div>
-             
+           <div class="col-xs-12">
+             <h2 class="sec-title text-center color-secondary">
+              Our Services
+             </h2>             
+             <p class="text-center">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+             </p>
+           </div>
+         </div>
+         
+         <div class="row">
+          <div class="col-sm-4">
+            <div class="flip-card">
+              <div class="flip-card-front">
+                <div class="card-front-head">
+                  <p class="text-center">
+                    <i class="fa fa-diamond" aria-hidden="true"></i>
+                  </p>
+                </div>
+                <div class="card-front-body">
+                  <h4>
+                    Strategy &amp; Planning Service
+                  </h4>
+                </div>
+              </div>
+              <div class="flip-card-back">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+           <div class="col-sm-4">
+             <div class="flip-card">
+               <div class="flip-card-front">
+                 <div class="card-front-head">
+                   <p class="text-center">
+                    <i class="fa fa-usd" aria-hidden="true"></i>
+                   </p>
+                 </div>
+                 <div class="card-front-body">
+                   <h4>
+                     Finance &amp; estructuring
+                   </h4>
+                 </div>
+               </div>
+               <div class="flip-card-back">
+                 <p>
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                 </p>
+               </div>
+             </div>
+           </div>
+           
+           <div class="col-sm-4">
+             <div class="flip-card">
+               <div class="flip-card-front">
+                 <div class="card-front-head">
+                   <p class="text-center">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                   </p>
+                 </div>
+                 <div class="card-front-body">
+                   <h4>
+                     Estate Planning Service
+                   </h4>
+                 </div>
+               </div>
+               <div class="flip-card-back">
+                 <p>
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                 </p>
+               </div>
+             </div>
            </div>
          </div>
        </div>
      </section>
+     
+     <section class="awards bg-awards">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="awards-item">
+              <h3>
+                <span data-animate="counter">50</span>
+              </h3>
+              <p>
+                Awards Won
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-sm-3">
+            <div class="awards-item">
+              <h3>
+                <span data-animate="counter">3968</span>
+              </h3>
+              <p>
+                Line of Code
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-sm-3">
+            <div class="awards-item">
+              <h3>
+                <span data-animate="counter">75</span>
+              </h3>
+              <p>
+                Clients Worldwide
+              </p>
+            </div>
+          </div>
+          
+          <div class="col-sm-3">
+            <div class="awards-item">
+              <h3>
+                <span>125</span>
+              </h3>
+              <p>
+                Projects Delivered
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+     </section>
+     
+     <section id="our-team" class="bg-white">
+       <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="sec-title text-center color-secondary">
+              Our Team
+            </h2>
+            
+            <p class="text-center">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            </p>
+          </div>
+        </div>
+        
+        <div class="row sec-profile-card">
+          <div class="col-sm-6 col-md-3">
+            <div class="profile-card">
+              <div class="card-pic text-center">
+                <img src="img/wade-smith.jpg" class="img-responsive img-center" />
+              </div>
+              
+              <div class="card-body">
+                <h3>
+                  Wade Smith
+                </h3>
+                <p>
+                  Position Title
+                </p>
+              </div>
+              
+              <div class="overlay">
+                <div class="card-over">
+                  <h3>
+                    Wade Smith
+                  </h3>
+                  <p>
+                    Position Title
+                  </p>
+                  <p>
+                    Contact:
+                  </p>
+                  <ul class="list-unstyled">
+                    <li><i class="fa fa-phone" aria-hidden="true"></i><span>+1-123-456-7891</span></li>
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><span><a href="mailto:my@email.com">my@email.com</a></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-6 col-md-3">
+            <div class="profile-card">
+              <div class="card-pic text-center">
+                <img src="img/dave-peterson.jpg" class="img-responsive img-center" />
+              </div>
+              
+              <div class="card-body">
+                <h3>
+                  Dave Peterson
+                </h3>
+                <p>
+                  Position Title
+                </p>
+              </div>
+              
+              <div class="overlay">
+                <div class="card-over">
+                  <h3>
+                    Dave Peterson
+                  </h3>
+                  <p>
+                    Position Title
+                  </p>
+                  <p>
+                    Contact:
+                  </p>
+                  <ul class="list-unstyled">
+                    <li><i class="fa fa-phone" aria-hidden="true"></i><span>+1-123-456-7891</span></li>
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><span><a href="mailto:my@email.com">my@email.com</a></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-6 col-md-3">
+            <div class="profile-card">
+              <div class="card-pic">
+                <img src="img/alice-jones.jpg" class="img-responsive img-center" />
+              </div>
+              
+              <div class="card-body">
+                <h3>
+                  Alice Jones
+                </h3>
+                <p>
+                  Position Title
+                </p>
+              </div>
+              
+              <div class="overlay">
+                <div class="card-over">
+                  <h3>
+                    Alice Jones
+                  </h3>
+                  <p>
+                    Position Title
+                  </p>
+                  <p>
+                    Contact:
+                  </p>
+                  <ul class="list-unstyled">
+                    <li><i class="fa fa-phone" aria-hidden="true"></i><span>+1-123-456-7891</span></li>
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><span><a href="mailto:my@email.com">my@email.com</a></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-6 col-md-3">
+            <div class="profile-card">
+              <div class="card-pic">
+                <img src="img/thea-parker.jpg" class="img-responsive img-center" />
+              </div>
+              
+              <div class="card-body">
+                <h3>
+                  Thea Parker
+                </h3>
+                <p>
+                  Position Title
+                </p>
+              </div>
+              
+              <div class="overlay">
+                <div class="card-over">
+                  <h3>
+                    Thea Parker
+                  </h3>
+                  <p>
+                    Position Title
+                  </p>
+                  <p>
+                    Contact:
+                  </p>
+                  <ul class="list-unstyled">
+                    <li><i class="fa fa-phone" aria-hidden="true"></i><span>+1-123-456-7891</span></li>
+                    <li><i class="fa fa-envelope-o" aria-hidden="true"></i><span><a href="mailto:my@email.com">my@email.com</a></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+     </section>
+     
+     <section id="news" class="bg-fade">
+       <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="sec-title text-center color-secondary">
+              News Feeds
+            </h2>
+            
+            <p class="text-center">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            </p>
+          </div>
+        </div>
+        
+        <div class="row sec-news">
+          <div class="col-sm-4">
+            <article>
+              <div class="art-head">
+                <img src="img/art-01.jpeg" class="img-responsive img-center" />
+              </div>
+              
+              <div class="art-body">
+                <p class="art-date">
+                  26 Aug 2019
+                </p>
+                <h3>
+                  A long article title heading with meaning to fit in 2 lines 
+                </h3>
+                <p>
+                  <a href="#" class="btn btn-default btn-primary">Read more</a>
+                </p>
+              </div>
+            </article>
+          </div>
+          
+          <div class="col-sm-4">
+            <article>
+              <div class="art-head">
+                <img src="img/art-02.jpg" class="img-responsive img-center" />
+              </div>
+              
+              <div class="art-body">
+                <p class="art-date">
+                  28 Aug 2019
+                </p>
+                <h3>
+                  A long article title heading with meaning to fit in 2 lines 
+                </h3>
+                <p>
+                  <a href="#" class="btn btn-default btn-primary">Read more</a>
+                </p>
+              </div>
+            </article>
+          </div>
+          
+          <div class="col-sm-4">
+            <article>
+              <div class="art-head">
+                <img src="img/art-03.png" class="img-responsive img-center" />
+              </div>
+              
+              <div class="art-body">
+                <p class="art-date">
+                  30 Aug 2019
+                </p>
+                <h3>
+                  A long article title heading with meaning to fit in 2 lines 
+                </h3>
+                <p>
+                  <a href="#" class="btn btn-default btn-primary">Read more</a>
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+       </div>
+     </section>
+     
+     <section class="prefooter bg-prefooter">
+       <div class="container">
+        <div class="row">
+          <div class="col-sm-5th">
+            <img src="img/badge-01.png" class="img-responsive img-center" />
+          </div>
+          <div class="col-sm-5th">
+            <img src="img/badge-02.png" class="img-responsive img-center" />
+          </div>
+          <div class="col-sm-5th">
+            <img src="img/badge-03.png" class="img-responsive img-center" />
+          </div>
+          <div class="col-sm-5th">
+            <img src="img/badge-04.png" class="img-responsive img-center" />
+          </div>
+          <div class="col-sm-5th">
+            <img src="img/badge-05.png" class="img-responsive img-center" />
+          </div>
+        </div>
+       </div>
+     </section>
       
-    </main>
+    </main><!-- /main -->
     
-    <footer class="bg-primary">
-      <section>
+    <footer class="bg-secondary">
+      <section class="footer-cont">
         <div class="container">
           <div class="row">
-            <div>
+            <div class="col-sm-3">
+              <div class="footer-logo">
+                <img src="img/logo.png" class="img-responsive img-center" />
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>                
+              </div>
+            </div>
+            
+            <div class="col-sm-3">
+              <h3>
+                Quick Links
+              </h3>
               
+              <ul class="list-unstyled footer-links">
+                <li><a href="#">Link item 1</a></li>
+                <li><a href="#">Link item 2</a></li>
+                <li><a href="#">Link item 3</a></li>
+                <li><a href="#">Link item 4</a></li>
+                <li><a href="#">Link item 5</a></li>
+              </ul>
+            </div>
+            
+            <div class="col-sm-3">
+              <h3>
+                Recent News
+              </h3>
+              
+              <ul class="list-unstyled footer-arts">
+                <li><a href="#">Article title heading with meaning <span class="art-date">August 26, 2019</span></a></li>
+                <li><a href="#">Article title heading with meaning <span class="art-date">August 28, 2019</span></a></li>
+              </ul>
+            </div>
+            
+            <div class="col-sm-3">
+              <h3>
+                Contact
+              </h3>
+              
+              <ul class="list-unstyled contact-list">
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i><span>1040 Continentals Way #16, Belmont, CA 94002</span></li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i><span>+1-650-860-1806</span></li>
+                <li><i class="fa fa-envelope-o" aria-hidden="true"></i><span><a href="mailto:sales@accedodigital.com">sales@accedodigital.com</a></span></li>
+                <li><i class="fa fa-envelope-o" aria-hidden="true"></i><span><a href="mailto:service@accedodigital.com">service@accedodigital.com</a></span></li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
       
-      <section class="copyright bg-bottom">
+      <section class="copyright bg-primary">
         <div class="container">
           <div class="row">
             <div class="col-sm-6">
