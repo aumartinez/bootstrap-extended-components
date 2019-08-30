@@ -1,12 +1,10 @@
-window.onload = run;
-
 function run() {
   let elems = document.querySelectorAll("*");
   
   //Filter elements
   let scrollElems = filterElems(elems, "data-scroll", "link");  
   let activeElems = filterElems(elems, "data-toggle", "active");
-  let spyElems = filterElems(elems, "data-spy", "scroll");  
+  let spyElems = filterElems(elems, "data-animate", "scroll");  
   let countElems = filterElems(elems, "data-animate", "counter");
   let menu = filterElems(elems, "data-scroll", "navbar");
   let menuElems = pullMenuElems(menu);
@@ -160,13 +158,13 @@ function checkPos(elems) {
       curr[i] = window.innerHeight + document.documentElement.scrollTop;
     }
     if (curr[i] > (elemPos[i] + (elems[i].offsetHeight / 4))) {
-      addClass(elems[i], "active");
+      addClassToElem(elems[i], "active");
     }
   }
   
 }
 
-function addClass (elem, myClass) {
+function addClassToElem (elem, myClass) {
   if (elem.clasList) {
     elem.classList.add(myClass);
   }
@@ -183,3 +181,5 @@ function addClass (elem, myClass) {
 function animateCounter() {
 
 }
+
+window.onload = run;
