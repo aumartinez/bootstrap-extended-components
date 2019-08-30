@@ -6,14 +6,19 @@ function run() {
   //Filter elements
   let scrollElems = filterElems(elems, "data-scroll", "link");  
   let activeElems = filterElems(elems, "data-toggle", "active");
-  let spyElems = filterElems(elems, "data-spy", "scroll"); 
+  let spyElems = filterElems(elems, "data-spy", "scroll");  
+  let countElems = filterElems(elems, "data-animate", "counter");
   let menu = filterElems(elems, "data-scroll", "navbar");
   let menuElems = pullMenuElems(menu);
   
   //Add listeners
   addEventListenerToList(scrollElems, "click", function(){smoothScroll(event);});
-  addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(activeElems, "click", function(){toggleClass(event);});
+  addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});
+  addEventListenerToList(countElems, "click", function(){animateCounter(event);});  
+  
+  //Window listener
+  spyElems?checkPos(spyElems):false;
   window.addEventListener("scroll", function(){checkPos(spyElems);}, false);
 }
 
@@ -22,7 +27,7 @@ function run() {
 function filterElems(elems, attribute, data) {
   let arr = [];
   for (let i = 0; i < elems.length; i++) {
-    if (elems[i].getAttribute(attribute) == data) {
+    if (elems[i].getAttribute(attribute) === data) {
       arr.push(elems[i]);
     }
   }
@@ -66,6 +71,8 @@ function smoothScroll(evt) {
   //Can play with timeinterval and parts, total animation timing is: time * parts
   let timeinterval = 10;
   let parts = 50;
+  
+  (len > 2500)?parts = parts + 50:parts;
   
   let inc = len / parts;
   let sum = 0;
@@ -139,7 +146,7 @@ function toggleClass (evt) {
   }
 }
 
-function checkPos(elems) {
+function checkPos(elems) {  
   let elemPos = [];
   let curr = [];
   
@@ -147,7 +154,6 @@ function checkPos(elems) {
     if (window.scrollY) {
       elemPos[i] = elems[i].getBoundingClientRect().top + window.scrollY;
       curr[i] = window.innerHeight + window.scrollY;
-      
     }
     else{
       elemPos[i] = elems[i].getBoundingClientRect().top + document.documentElement.scrollTop;
@@ -172,4 +178,8 @@ function addClass (elem, myClass) {
       elem.className = arr.join(" ");
     }
   }
+}
+
+function animateCounter() {
+
 }
