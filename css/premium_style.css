@@ -201,7 +201,7 @@ header {
 /* Hero */
 
 .hero {
-  height: 350px;
+  min-height: 350px;
   box-sizing: border-box;
   padding: 0;
 }
@@ -263,7 +263,7 @@ header {
   width: 100%;
   display: table;
   padding: 15px;
-  transform: translateY(100px);
+  transform: translateY(90px);
   background-color: transparent;
   transition: all 0.5s;
 }

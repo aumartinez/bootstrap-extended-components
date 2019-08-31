@@ -1,23 +1,28 @@
+window.onload = run;
+
 function run() {
   let elems = document.querySelectorAll("*");
+  let btns = document.querySelectorAll("a.btn");
   
   //Filter elements
   let scrollElems = filterElems(elems, "data-scroll", "link");  
   let activeElems = filterElems(elems, "data-toggle", "active");
-  let spyElems = filterElems(elems, "data-animate", "scroll");  
+  let spyElems = filterElems(elems, "data-animate", "fade-top");  
   let countElems = filterElems(elems, "data-animate", "counter");
   let menu = filterElems(elems, "data-scroll", "navbar");
-  let menuElems = pullMenuElems(menu);
+  let menuElems = pullMenuElems(menu);  
   
   //Add listeners
   addEventListenerToList(scrollElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(activeElems, "click", function(){toggleClass(event);});
   addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});
-  addEventListenerToList(countElems, "click", function(){animateCounter(event);});  
+  addEventListenerToList(countElems, "click", function(){animateCounter(event);});
   
   //Window listener
   spyElems?checkPos(spyElems):false;
+  btns?btnStyler(btns):false;
   window.addEventListener("scroll", function(){checkPos(spyElems);}, false);
+  window.addEventListener("resize", function(){btnStyler(btns);}, false);  
 }
 
 //Helpers
@@ -70,7 +75,7 @@ function smoothScroll(evt) {
   let timeinterval = 10;
   let parts = 50;
   
-  (len > 2500)?parts = parts + 50:parts;
+  (len > 2500)?parts = Math.round(parts * 1.1):false;
   
   let inc = len / parts;
   let sum = 0;
@@ -182,4 +187,16 @@ function animateCounter() {
 
 }
 
-window.onload = run;
+function btnStyler(elems) {
+  let winWidth = window.innerWidth;
+  if (winWidth < 768) {    
+    for (let i = 0; i < elems.length; i++) {
+      elems[i].parentNode.style.textAlign = "center";
+    }
+  }
+  else {
+    for (let i = 0; i < elems.length; i++) {
+      elems[i].parentNode.style.textAlign = "initial";
+    }
+  }
+}
