@@ -1,28 +1,29 @@
-window.onload = run;
+window.addEventListener("load", run, false);
 
-function run() {
+function run() {  
   let elems = document.querySelectorAll("*");
-  let btns = document.querySelectorAll("a.btn");
   
   //Filter elements
-  let scrollElems = filterElems(elems, "data-scroll", "link");  
+  let scrollElems = filterElems(elems, "data-animate", "scroll");
+  let menu = filterElems(elems, "data-animate", "navbar");  
+  
+  let menuElems = pullMenuElems(menu);
   let activeElems = filterElems(elems, "data-toggle", "active");
-  let spyElems = filterElems(elems, "data-animate", "fade-top");  
   let countElems = filterElems(elems, "data-animate", "counter");
-  let menu = filterElems(elems, "data-scroll", "navbar");
-  let menuElems = pullMenuElems(menu);  
+  
+  //Initial status on page refresh
+  scrollElems?getPos(scrollElems):false;
+  countElems?getPos(countElems):false;
   
   //Add listeners
   addEventListenerToList(scrollElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(activeElems, "click", function(){toggleClass(event);});
   addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});
-  addEventListenerToList(countElems, "click", function(){animateCounter(event);});
+  addEventListenerToList(countElems, "scrolled", function(){animateCounter(event);});
   
-  //Window listener
-  spyElems?checkPos(spyElems):false;
-  btns?btnStyler(btns):false;
-  window.addEventListener("scroll", function(){checkPos(spyElems);}, false);
-  window.addEventListener("resize", function(){btnStyler(btns);}, false);  
+  //Window listener    
+  window.addEventListener("scroll", function(){getPos(scrollElems);}, false);
+  window.addEventListener("scroll", function(){getPos(countElems);}, false);
 }
 
 //Helpers
@@ -54,17 +55,30 @@ function pullMenuElems(elems) {
   return arr;
 }
 
+function addClass (elem, myClass) {
+  if (elem.clasList) {
+    elem.classList.add(myClass);
+  }
+  else {
+    let arr = elem.className.split(" ");
+    let i = arr.indexOf(myClass);
+    if (i == -1) {
+      arr.push(myClass);
+      elem.className = arr.join(" ");
+    }
+  }
+}
+
 //Animate + change state functions
 
 function smoothScroll(evt) {
   evt.preventDefault();
   
   let startElem = evt.currentTarget;  
-  let id = startElem.getAttribute("href").replace("#","");
-  
-  if(!id){
+  if(!startElem.getAttribute("href")){
     return;
   }
+  let id = startElem.getAttribute("href").replace("#","");  
   
   let targetElem = document.getElementById(id);  
   let startPos = startElem.getBoundingClientRect().top;
@@ -75,15 +89,12 @@ function smoothScroll(evt) {
   let timeinterval = 10;
   let parts = 50;
   
-  (len > 2500)?parts = Math.round(parts * 1.1):false;
-  
-  let inc = len / parts;
-  let sum = 0;
-  let i = 0;
+  let inc = Math.round(len / parts);
+  let sum = 0;  
   
   let scrollFunc = setInterval(
     function() {
-      if (i == parts) {
+      if (parts == 0) {
         clearInterval(scrollFunc);
       }
       
@@ -96,7 +107,7 @@ function smoothScroll(evt) {
         sum += inc;
       }   
       
-      i++;
+      parts--;
       
     }, timeinterval);
 }
@@ -149,7 +160,7 @@ function toggleClass (evt) {
   }
 }
 
-function checkPos(elems) {  
+function getPos(elems) {  
   let elemPos = [];
   let curr = [];
   
@@ -163,40 +174,46 @@ function checkPos(elems) {
       curr[i] = window.innerHeight + document.documentElement.scrollTop;
     }
     if (curr[i] > (elemPos[i] + (elems[i].offsetHeight / 4))) {
-      addClassToElem(elems[i], "active");
+      addClass(elems[i], "active");
+      let evt = new Event("scrolled");
+      elems[i].dispatchEvent(evt);
     }
   }
   
 }
 
-function addClassToElem (elem, myClass) {
-  if (elem.clasList) {
-    elem.classList.add(myClass);
+function animateCounter(evt) {
+  let elem = evt.currentTarget;
+  let numb = parseInt(elem.innerText);
+  
+  //Can play with timeinterval and parts, animation duration is equals to: time * parts
+  let timeinterval = 50;
+  let parts = 20;
+  
+  let inc = Math.round(numb / parts);
+  let sum = 0;
+  
+  //Check if element has "finish" class
+  let arr = elem.className.split(" ");
+  let ind = arr.indexOf("finish");
+  
+  //If element has "finish" class don't do anything
+  if (ind == -1) {
+    //Add a "finish" class to the element and start counter
+    addClass(elem, "finish");
+    let timer = setInterval(
+      function(){
+        if (sum > numb) {
+          sum = numb;
+          elem.innerText = sum;          
+          clearInterval(timer);          
+        }
+        
+        elem.innerText = sum;
+        sum += inc;
+      }, timeinterval);
   }
   else {
-    let arr = elem.className.split(" ");
-    let i = arr.indexOf(myClass);
-    if (i == -1) {
-      arr.push(myClass);
-      elem.className = arr.join(" ");
-    }
-  }
-}
-
-function animateCounter() {
-
-}
-
-function btnStyler(elems) {
-  let winWidth = window.innerWidth;
-  if (winWidth < 768) {    
-    for (let i = 0; i < elems.length; i++) {
-      elems[i].parentNode.style.textAlign = "center";
-    }
-  }
-  else {
-    for (let i = 0; i < elems.length; i++) {
-      elems[i].parentNode.style.textAlign = "initial";
-    }
+    return;
   }
 }
