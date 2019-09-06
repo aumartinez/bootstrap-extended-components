@@ -1,7 +1,7 @@
 window.addEventListener("load", run, false);
 
 function run() {
- let elems = document.querySelectorAll("*");
+ let elems = document.querySelectorAll("*"); 
  let imgs = document.querySelectorAll("img");
   
  for (let i = 0; i < imgs.length ; i++) {   

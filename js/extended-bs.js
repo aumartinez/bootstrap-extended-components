@@ -5,8 +5,7 @@ function run() {
   
   //Filter elements
   let scrollElems = filterElems(elems, "data-animate", "scroll");
-  let menu = filterElems(elems, "data-animate", "navbar");  
-  
+  let menu = filterElems(elems, "data-animate", "navbar");
   let menuElems = pullMenuElems(menu);
   let activeElems = filterElems(elems, "data-toggle", "active");
   let countElems = filterElems(elems, "data-animate", "counter");
@@ -21,7 +20,7 @@ function run() {
   addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(countElems, "scrolled", function(){animateCounter(event);});
   
-  //Window listener    
+  //Window listeners
   window.addEventListener("scroll", function(){getPos(scrollElems);}, false);
   window.addEventListener("scroll", function(){getPos(countElems);}, false);
 }
@@ -69,6 +68,32 @@ function addClass (elem, myClass) {
   }
 }
 
+function callOnce(func) {
+  let called = false;
+  return function() {
+    if (!called) {
+      called = true;
+      return func();
+    }
+    else {
+      return;
+    }
+  }
+}
+
+function createNewEvent(evtName) {
+  let evt;
+  if (typeof(Event) === "function") {
+    evt = new Event(evtName);
+  }
+  else {
+    evt = document.createEvent("Event");
+    evt.initEvent(evtName, true, true);
+  }
+  
+  return evt;
+}
+
 //Animate + change state functions
 
 function smoothScroll(evt) {
@@ -112,7 +137,7 @@ function smoothScroll(evt) {
     }, timeinterval);
 }
 
-function toggleClass (evt) {
+function toggleClass(evt) {
   let elem = evt.currentTarget;
   let myClass = elem.getAttribute("data-toggle");
   
@@ -175,7 +200,7 @@ function getPos(elems) {
     }
     if (curr[i] > (elemPos[i] + (elems[i].offsetHeight / 4))) {
       addClass(elems[i], "active");
-      let evt = new Event("scrolled");
+      let evt = createNewEvent("scrolled");
       elems[i].dispatchEvent(evt);
     }
   }
@@ -188,7 +213,7 @@ function animateCounter(evt) {
   
   //Can play with timeinterval and parts, animation duration is equals to: time * parts
   let timeinterval = 50;
-  let parts = 20;
+  let parts = 25;
   
   let inc = Math.round(numb / parts);
   let sum = 0;
