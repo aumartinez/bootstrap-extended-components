@@ -1,10 +1,10 @@
 /*Premium Style Sheet*/
-@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 /* Global */
 
 body {
-  font-family: "Ubuntu", Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: #333;
@@ -111,6 +111,14 @@ a.btn-primary:focus {
   border: 0;
 }
 
+.bg-primary span,
+.bg-secondary span,
+.bg-primary i,
+.bg-secondary i,
+.bg-primary h4,
+.bg-secondary h4,
+.bg-primary h3,
+.bg-secondary h3,
 .bg-secondary p,
 .bg-primary p,
 .bg-secondary a,
@@ -207,7 +215,7 @@ header {
 }
 
 .bg-hero {
-  background-image: url("../img/hero.jpg");
+  background-image: url("^media_src_hero.jpg^");
   background-size: cover;
   background-position: top center;
 }
@@ -241,19 +249,19 @@ header {
 }
 
 .about-cards .bg-card-01 {
-  background-image: url("../img/intro-card-01.png");
+  background-image: url("^media_src_intro-card-01.png^");
   background-size: cover;
   background-position: top center;
 }
 
 .about-cards .bg-card-02 {
-  background-image: url("../img/intro-card-02.png");
+  background-image: url("^media_src_intro-card-02.png^");
   background-size: cover;
   background-position: top center;
 }
 
 .about-cards .bg-card-03 {
-  background-image: url("../img/intro-card-03.png");
+  background-image: url("^media_src_intro-card-03.png^");
   background-size: cover;
   background-position: top center;
 }
@@ -263,7 +271,7 @@ header {
   width: 100%;
   display: table;
   padding: 15px;
-  transform: translateY(90px);
+  transform: translateY(100px);
   background-color: transparent;
   transition: all 0.5s;
 }
@@ -291,6 +299,10 @@ header {
   transform: translateY(0);
 }
 
+h2.sub-title {
+  margin-bottom: 30px;
+}
+
 /* Pin up */
 
 img.about-pinup {
@@ -299,7 +311,8 @@ img.about-pinup {
 
 /* Our Services */
 
-.sec-title:before {
+.sec-title:before,
+.sec-title::before {
   content: "";
   position: absolute;
   top: 0;
@@ -310,28 +323,103 @@ img.about-pinup {
   border-top: 3px solid #BF6ABB;
 }
 
-.sec-title::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 80px;
-  border-top: 4px solid #BF6ABB;
+h2.sec-title {
+  margin-bottom: 30px;
+}
+
+h2.sec-title span {
+  display: inline-block;
 }
 
 .sec-title + p {
   font-size: 18px;
+  margin-bottom: 50px;
+}
+
+/* Flip cards */
+
+.flip-card {
+  cursor: pointer;
+  background-color: transparent;
+  min-height: 250px;
+  width: 100%;
+  perspective: 1000px;
+  margin-bottom: 15px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;  
+}
+
+.flip-card.active .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front {
+  padding: 25px 15px;  
+}
+
+.flip-card-front,
+.flip-card-back {
+  min-height: 250px;
+  width: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  padding: 50px 15px;
+  transform: rotateY(180deg);
+}
+
+.flip-card .card-front-head p {
+  font-size: 60px;
+}
+
+.flip-card .card-front-head p i {
+  background-color: #f2bbef;
+  border-radius: 50%;
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+  line-height: 100px;
+}
+.flip-card .card-front-body {
+  color: #fff;  
+}
+
+.flip-card .card-front-body h4 {
+  font-weight: normal;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .bg-prefooter {
   background-color: #f2bbef;
 }
 
+/* Awards */
+
+.awards-item {
+  text-align: center;
+}
+
+.awards-item h3 {
+  font-style: italic;
+}
+
 /* Footer */
 
+footer h3 {
+  font-weight: normal;
+}
+
 @media (min-width: 768px) {
+  
   /* Helpers */
   
   .col-sm-5th {
@@ -343,4 +431,5 @@ img.about-pinup {
   .xs-text-center {
     text-align: initial;
   }
+  
 }

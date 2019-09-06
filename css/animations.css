@@ -1,23 +1,51 @@
 /* animations stylesheet */
 
+.ani-fade-in.active {
+  -webkit-animation: fade-in 2s ease;
+  animation: fade-in 2s ease;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
 .ani-fade-top.active {
   -webkit-animation: fade-in-top 2s ease;
-          animation: fade-in-top 2s ease;
+  animation: fade-in-top 2s ease;
   -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
+
+/* Fade in place */
+
+@-webkit-keyframes fade-in-top {
+  0% {    
+    opacity: 0;
+  }
+  100% {    
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-top {
+  0% {    
+    opacity: 0;
+  }
+  100% {    
+    opacity: 1;
+  }
+}
+
 
 /* Fade in to top */
 
 @-webkit-keyframes fade-in-top {
   0% {
     -webkit-transform: translateY(50px);
-            transform: translateY(50px);
+    transform: translateY(50px);
     opacity: 0;
   }
   100% {
     -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
@@ -25,12 +53,12 @@
 @keyframes fade-in-top {
   0% {
     -webkit-transform: translateY(50px);
-            transform: translateY(50px);
+    transform: translateY(50px);
     opacity: 0;
   }
   100% {
     -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
