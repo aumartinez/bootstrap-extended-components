@@ -153,20 +153,19 @@ function smoothScroll(evt) {
   
   let scrollFunc = setInterval(
     function() {
-      if (parts == 0) {
+      if (Math.abs(sum) >= len) {
+        document.documentElement.scrollTop = targetPos;
         clearInterval(scrollFunc);
       }
       
-      document.documentElement.scrollTop = startPos + sum;      
+      document.documentElement.scrollTop = startPos + sum;
       
       if (startPos > targetPos) {
-        sum -= inc;
+        sum -= inc;        
       } 
       else {
         sum += inc;
-      }   
-      
-      parts--;
+      }
       
     }, timeinterval);
 }
