@@ -2,6 +2,18 @@ window.addEventListener("load", run, false);
 
 function run() {  
   let elems = document.querySelectorAll("*");
+  var body = document.querySelector("body");
+  
+  if(typeof body.style.animationName === "undefined") {
+    console.log("Animation CSS keyframes not supported");
+    var css = document.createElement("style");
+    css.type = "text/css";
+    
+    var styles = "*[class*=\"ani-fade\"]{opacity: 1 !important;}";
+    css.appendChild(document.createTextNode(styles));
+    
+    document.getElementsByTagName("head")[0].appendChild(css);    
+  }
   
   //Filter elements
   let scrollElems = filterElems(elems, "data-animate", "scroll");
@@ -84,7 +96,7 @@ function callOnce(func) {
 
 function createNewEvent(evtName) {
   let evt;
-  if (typeof(Event) === "function") {
+  if (typeof Event === "function") {
     evt = new Event(evtName);
   }
   else {
