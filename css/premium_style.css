@@ -323,7 +323,8 @@ header {
 .top-jump {
   max-width: 1230px;
   display: block;
-  margin: auto 15px;
+  margin: auto;
+  padding-right: 15px;
   z-index: 999;
   left: 0;
   right: 0;
