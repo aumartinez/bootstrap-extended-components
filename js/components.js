@@ -240,9 +240,8 @@ function animateCounter(evt) {
     addClass(elem, "finish");
     let timer = setInterval(
       function(){
-        if (sum > numb) {
-          sum = numb;
-          elem.innerText = sum;          
+        if (sum > numb) {          
+          elem.innerText = numb;          
           clearInterval(timer);          
         }
         
