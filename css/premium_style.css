@@ -834,8 +834,9 @@ section.copyright ul.bottom-social li a {
     line-height: 80px;
   }
   
-  footer ul.contact-list li {
-    overflow: visible;
+  footer ul.contact-list li a{
+    word-wrap: break-word;
+    word-break: break-all;
   }
   
   /* Copyright */
