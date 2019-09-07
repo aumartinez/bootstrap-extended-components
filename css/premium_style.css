@@ -220,7 +220,7 @@ header {
 }
 
 .bg-hero {
-  background-image: url("^media_src_hero.jpg^");
+  background-image: url("../img/hero.jpg");
   background-size: cover;
   background-position: top center;
 }
@@ -254,19 +254,19 @@ header {
 }
 
 .about-cards .bg-card-01 {
-  background-image: url("^media_src_intro-card-01.png^");
+  background-image: url("../img/intro-card-01.png");
   background-size: cover;
   background-position: top center;
 }
 
 .about-cards .bg-card-02 {
-  background-image: url("^media_src_intro-card-02.png^");
+  background-image: url("../img/intro-card-02.png");
   background-size: cover;
   background-position: top center;
 }
 
 .about-cards .bg-card-03 {
-  background-image: url("^media_src_intro-card-03.png^");
+  background-image: url("../img/intro-card-03.png");
   background-size: cover;
   background-position: top center;
 }
