@@ -5,17 +5,18 @@ function run() {
   
   //Filter elements
   let scrollElems = filterElems(elems, "data-animate", "scroll");
-  let menu = filterElems(elems, "data-animate", "navbar");
+  let linkElems = filterElems(elems, "data-animate", "link-scroll");
+  let menu = filterElems(elems, "data-animate", "navbar-scroll");
   let menuElems = pullMenuElems(menu);
+  let countElems = filterElems(elems, "data-animate", "counter");  
   let activeElems = filterElems(elems, "data-toggle", "active");
-  let countElems = filterElems(elems, "data-animate", "counter");
   
   //Initial status on page refresh
   scrollElems?getPos(scrollElems):false;
   countElems?getPos(countElems):false;
   
-  //Add listeners
-  addEventListenerToList(scrollElems, "click", function(){smoothScroll(event);});
+  //Add listeners  
+  addEventListenerToList(linkElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(activeElems, "click", function(){toggleClass(event);});
   addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(countElems, "scrolled", function(){animateCounter(event);});
@@ -96,20 +97,39 @@ function createNewEvent(evtName) {
 
 //Animate + change state functions
 
+function getPos(elems) {  
+  let elemPos = [];
+  let curr = [];
+  
+  for (let i = 0; i < elems.length; i++) {
+    if (window.scrollY) {
+      elemPos[i] = elems[i].getBoundingClientRect().top + window.scrollY;
+      curr[i] = window.innerHeight + window.scrollY;
+    }
+    else{
+      elemPos[i] = elems[i].getBoundingClientRect().top + document.documentElement.scrollTop;
+      curr[i] = window.innerHeight + document.documentElement.scrollTop;
+    }
+    if (curr[i] > (elemPos[i] + (elems[i].offsetHeight / 4))) {
+      addClass(elems[i], "active");
+      let evt = createNewEvent("scrolled");
+      elems[i].dispatchEvent(evt);
+    }
+  }
+  
+}
+
 function smoothScroll(evt) {
   evt.preventDefault();
-  
-  alert("Initiated");
-  
+      
   let startElem = evt.currentTarget;  
   if(!startElem.getAttribute("href")){
     return;
   }
-  let id = startElem.getAttribute("href").replace("#","");  
-  
+  let id = startElem.getAttribute("href").replace("#","");    
   let targetElem = document.getElementById(id);  
-  let startPos = startElem.getBoundingClientRect().top;
-  let targetPos = targetElem.getBoundingClientRect().top;  
+  let startPos = startElem.getBoundingClientRect().top + document.documentElement.scrollTop;
+  let targetPos = targetElem.getBoundingClientRect().top + document.documentElement.scrollTop;  
   let len = Math.abs(startPos - targetPos);
   
   //Can play with timeinterval and parts, total animation timing is: time * parts
@@ -117,7 +137,7 @@ function smoothScroll(evt) {
   let parts = 50;
   
   let inc = Math.round(len / parts);
-  let sum = 0;  
+  let sum = 0;
   
   let scrollFunc = setInterval(
     function() {
@@ -125,7 +145,7 @@ function smoothScroll(evt) {
         clearInterval(scrollFunc);
       }
       
-      document.documentElement.scrollTop = startPos + sum;
+      document.documentElement.scrollTop = startPos + sum;      
       
       if (startPos > targetPos) {
         sum -= inc;
@@ -187,28 +207,6 @@ function toggleClass(evt) {
   }
 }
 
-function getPos(elems) {  
-  let elemPos = [];
-  let curr = [];
-  
-  for (let i = 0; i < elems.length; i++) {
-    if (window.scrollY) {
-      elemPos[i] = elems[i].getBoundingClientRect().top + window.scrollY;
-      curr[i] = window.innerHeight + window.scrollY;
-    }
-    else{
-      elemPos[i] = elems[i].getBoundingClientRect().top + document.documentElement.scrollTop;
-      curr[i] = window.innerHeight + document.documentElement.scrollTop;
-    }
-    if (curr[i] > (elemPos[i] + (elems[i].offsetHeight / 4))) {
-      addClass(elems[i], "active");
-      let evt = createNewEvent("scrolled");
-      elems[i].dispatchEvent(evt);
-    }
-  }
-  
-}
-
 function animateCounter(evt) {
   let elem = evt.currentTarget;
   let numb = parseInt(elem.innerText);
@@ -224,7 +222,7 @@ function animateCounter(evt) {
   let arr = elem.className.split(" ");
   let ind = arr.indexOf("finish");
   
-  //If element has "finish" class don't do anything
+  //If element doesn't has "finish" class play animation
   if (ind == -1) {
     //Add a "finish" class to the element and start counter
     addClass(elem, "finish");
