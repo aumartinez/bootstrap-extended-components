@@ -318,6 +318,45 @@ header {
   transform: translateY(0);
 }
 
+/* Fixed pin */
+
+.top-jump {
+  max-width: 1200px;
+  display: block;
+  margin: auto;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+}
+
+.top-jump.affix-top {
+  height: 1px;
+  overflow: hidden;
+}
+
+.top-jump.affix {
+  height: auto;
+  overflow: visible;
+}
+
+.top-jump .top-caret {
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 45px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  color: #fff;
+  float: right;
+  text-align: center;
+  background-color: rgba(145, 38, 140, 0.7);
+}
+
+.top-jump .top-caret .fa {
+  font-size: 30px;  
+}
+
 h2.sub-title {
   margin-bottom: 30px;
 }
