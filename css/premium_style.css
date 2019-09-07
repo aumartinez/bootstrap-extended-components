@@ -668,6 +668,11 @@ footer ul.contact-list li {
   display: block;  
 }
 
+footer ul.contact-list li {
+  width: 100%;
+  overflow: hidden;
+}
+
 footer ul.contact-list li:before,
 footer ul.contact-list li::before {
   content: "";

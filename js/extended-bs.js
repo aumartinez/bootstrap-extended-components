@@ -4,7 +4,8 @@ function run() {
   let elems = document.querySelectorAll("*");
   var body = document.querySelector("body");
   
-  if(typeof body.style.animationName === "undefined") {
+  if(typeof body.style.WebkitAnimationName === "undefined" || typeof body.style.animationName === "undefined") {
+    alert("Animation CSS keyframes not supported");
     console.log("Animation CSS keyframes not supported");
     var css = document.createElement("style");
     css.type = "text/css";
