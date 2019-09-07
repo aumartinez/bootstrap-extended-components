@@ -271,7 +271,7 @@ header {
   width: 100%;
   display: table;
   padding: 15px;
-  transform: translateY(100px);
+  transform: translateY(90px);
   background-color: transparent;
   transition: all 0.5s;
 }
@@ -555,8 +555,6 @@ footer h3 {
 
 footer ul.contact-list li a,
 footer ul.contact-list li span,
-footer ul.contact-list li i,
-footer ul.footer-arts li a span,
 footer ul.footer-arts li a,
 footer ul.footer-links li a {
   color: #BF6ABB;
@@ -577,6 +575,19 @@ footer ul.contact-list li {
   display: block;  
 }
 
+footer ul.contact-list li:before,
+footer ul.contact-list li::before {
+  content: "";
+  display: table;
+}
+
+footer ul.contact-list li:after,
+footer ul.contact-list li::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 footer ul.contact-list li span,
 footer ul.contact-list li i {
   float: left;
@@ -588,6 +599,7 @@ footer ul.contact-list li span {
 
 footer ul.contact-list li i {
   margin-right: 15px;
+  line-height: 32px;
 }
 
 /* Copyright */
@@ -618,6 +630,19 @@ section.copyright ul.bottom-social li a {
   
   .xs-text-center {
     text-align: left;
+  }
+  
+  /* Header */
+  
+  header {
+    min-height: 100px;
+    box-sizing: border-box;
+  }
+  
+  /* Navbar */
+  
+  .navbar-header {
+    min-height: 100px;
   }
   
 }

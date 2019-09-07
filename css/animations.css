@@ -1,5 +1,10 @@
 /* animations stylesheet */
 
+.ani-fade-in,
+.ani-fade-top {
+  opacity: 0;
+}
+
 .ani-fade-in.active {
   -webkit-animation: fade-in 2s ease;
   animation: fade-in 2s ease;
