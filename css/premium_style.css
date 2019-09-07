@@ -50,6 +50,11 @@ footer > section {
   text-align: center;
 }
 
+.col-center {
+  float: none;
+  margin: auto;
+}
+
 /* Branding */
 
 .bg-primary {
@@ -186,6 +191,15 @@ header {
   margin-left: -15px;
 }
 
+.navbar-default .navbar-nav > li:last-child {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.navbar-default .navbar-nav > li:last-child > a.btn-default {
+  border-color: #fff;
+}
+
 .navbar-default .navbar-nav > li > a {
   color: #fff;
   text-align: center;
@@ -195,15 +209,6 @@ header {
 .navbar-default .navbar-nav > li > a:hover {
   color: #fff;
   background-color: #61035D;
-}
-
-.navbar-default .navbar-nav > li:last-child {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-.navbar-default .navbar-nav > li:last-child > a.btn-default {
-  border-color: #fff;
 }
 
 /* Hero */
@@ -270,14 +275,22 @@ header {
   min-height: 270px;
   width: 100%;
   display: table;
-  padding: 15px;
+  padding: 15px;  
+  background-color: transparent;  
+  -webkit-transform: translateY(90px);
+  -ms-transform: translateY(90px);
   transform: translateY(90px);
-  background-color: transparent;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
   transition: all 0.5s;
 }
 
 .about-cards .card-cont p:last-child {
-  transform: translateY(50px);
+  -webkit-transform: translateY(60px);
+  -ms-transform: translateY(60px);
+  transform: translateY(60px);
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
   transition: all 0.5s;
 }
 
@@ -290,12 +303,18 @@ header {
   padding-right: 10px;
 }
 
+.card:focus .card-cont,
 .card:hover .card-cont {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
   transform: translateY(0);
   background-color: #61035D;
 }
 
+.card:focus .card-cont p:last-child,
 .card:hover .card-cont p:last-child {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
   transform: translateY(0);
 }
 
@@ -331,9 +350,9 @@ h2.sec-title span {
   display: inline-block;
 }
 
-.sec-title + p {
+#our-services .title-parr {
   font-size: 18px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 /* Flip cards */
@@ -341,7 +360,7 @@ h2.sec-title span {
 .flip-card {
   cursor: pointer;
   background-color: transparent;
-  min-height: 250px;
+  height: 300px;
   width: 100%;  
   margin-bottom: 15px;
   -webkit-perspective: 1000px;
@@ -371,7 +390,7 @@ h2.sec-title span {
 
 .flip-card-front,
 .flip-card-back {
-  min-height: 250px;
+  height: 300px;
   width: 100%;
   position: absolute;
   -webkit-backface-visibility: hidden;
@@ -381,6 +400,7 @@ h2.sec-title span {
 .flip-card-back {
   padding: 50px 15px;
   -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
@@ -405,10 +425,17 @@ h2.sec-title span {
   font-weight: normal;
   text-align: center;
   margin-top: 50px;
+  line-height: 1.5;
+}
+
+.flip-card .flip-card-back h4 {
+  line-height: 1.5;
+  height: 55px;
 }
 
 .flip-card.active .flip-card-inner {
   -webkit-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
@@ -431,6 +458,11 @@ h2.sec-title span {
 
 /* Our Team */
 
+#our-team .title-parr {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
 #our-team .card-body {
   max-width: 270px;
   height: 125px;  
@@ -445,7 +477,11 @@ h2.sec-title span {
 }
 
 #our-team .card-contact {
+  -webkit-transform: translateY(5px);
+  -ms-transform: translateY(5px);
   transform: translateY(5px);
+  -webkit-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
   transition: all 0.6s ease;
   padding: 15px;
   opacity: 0;
@@ -478,7 +514,10 @@ h2.sec-title span {
   margin-bottom: 0;  
 }
 
+#our-team .profile-card:focus .card-contact,
 #our-team .profile-card:hover .card-contact {  
+  -webkit-transform: translateY(-225px);
+  -ms-transform: translateY(-225px);
   transform: translateY(-225px);
   opacity: 1;
   background-color: #91268C;
@@ -489,6 +528,11 @@ h2.sec-title span {
 /* News */
 
 #news article {
+  margin-bottom: 30px;
+}
+
+#news .title-parr {
+  font-size: 18px;
   margin-bottom: 30px;
 }
 
@@ -505,11 +549,19 @@ h2.sec-title span {
 }
 
 #news article .art-head img {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
   transform: scale(1);
+  -webkit-transition: -webkit-transform 0.6s ease;
+  transition: -webkit-transform 0.6s ease;
+  -o-transition: transform 0.6s ease;
   transition: transform 0.6s ease;
+  transition: transform 0.6s ease, -webkit-transform 0.6s ease;
 }
 
 #news article .art-head:hover img {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
@@ -583,8 +635,7 @@ footer ul.contact-list li::before {
 
 footer ul.contact-list li:after,
 footer ul.contact-list li::after {
-  content: "";
-  display: block;
+  content: "";  
   clear: both;
 }
 
@@ -599,7 +650,7 @@ footer ul.contact-list li span {
 
 footer ul.contact-list li i {
   margin-right: 15px;
-  line-height: 32px;
+  line-height: 2em;
 }
 
 /* Copyright */
@@ -636,7 +687,6 @@ section.copyright ul.bottom-social li a {
   
   header {
     min-height: 100px;
-    box-sizing: border-box;
   }
   
   /* Navbar */
@@ -644,5 +694,114 @@ section.copyright ul.bottom-social li a {
   .navbar-header {
     min-height: 100px;
   }
+  
+  .navbar-brand {
+    height: 80px;
+  }
+  
+  .navbar-default .navbar-nav {
+    margin-top: 25px;
+  }
+  
+  .navbar-default .navbar-nav > li {
+    margin-right: 10px;
+  }
+  
+  .navbar-default .navbar-nav > li:last-child {
+    padding: 0;
+    margin: 0;
+  }
+    
+  .navbar-default .navbar-nav > li > a {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px;
+  }
+  
+  /* Hero */
+  
+  .hero {
+    min-height: 500px;
+  }
+  
+  .hero .hero-title {
+    font-size: 60px;
+    margin-bottom: 30px;
+  }
+  
+  .hero div[class^="col-"] {
+    height: 500px;
+    padding-top: 0;
+  }
+  
+  .about-cards .card-cont {
+    -webkit-transform: translateY(65px);
+    -ms-transform: translateY(65px);
+    transform: translateY(65px);
+  }
+  
+  h2.sub-title {
+    margin-top: 60px;
+  }
+    
+  /* Pin up */
+  
+  img.about-pinup {
+    max-width: 100%;
+  }
+  
+  /* Our Services */
+  
+  /* Flip cards */
+  
+  /* Awards */
+  
+  /* Our Team */
+  
+  /* News */
+  
+  /* Prefooter */
+  
+  .prefooter .row > .col-sm-5th {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  /* Footer */
+  
+  footer .footer-logo {    
+    margin-top: 20px;    
+  }
+  
+  footer .footer-logo img {
+    height: 80px;
+    width: auto;
+    margin-bottom: 30px;
+  }
+  
+  footer .footer-logo img.img-center {
+    margin-left: 0;
+  }
+  
+  footer h3 {
+    height: 80px;
+    line-height: 80px;
+  }
+  
+  /* Copyright */
+  
+  section.copyright p {
+    height: 45px;
+    line-height: 45px;
+    text-align: left;
+    margin: 0;
+  }
+  
+  section.copyright ul.bottom-social {
+    text-align: right;
+    float: none;
+    margin: 0;
+  }
+  
   
 }

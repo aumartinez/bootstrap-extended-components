@@ -99,6 +99,8 @@ function createNewEvent(evtName) {
 function smoothScroll(evt) {
   evt.preventDefault();
   
+  alert("Initiated");
+  
   let startElem = evt.currentTarget;  
   if(!startElem.getAttribute("href")){
     return;
