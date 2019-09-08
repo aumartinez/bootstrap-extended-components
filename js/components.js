@@ -24,6 +24,7 @@ function run() {
   let menuElems = pullMenuElems(menu);
   let countElems = filterElems(elems, "data-animate", "counter");  
   let activeElems = filterElems(elems, "data-toggle", "active");
+  let sidebarMenu = filterElems(elems, "data-menu", "sidebar");
   
   //Initial status on page refresh
   scrollElems?getPos(scrollElems):false;
@@ -34,6 +35,7 @@ function run() {
   addEventListenerToList(activeElems, "click", function(){toggleClass(event);});
   addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(countElems, "scrolled", function(){animateCounter(event);});
+  addEventListenerToList(sidebarMenu, "active", function(){setFullHeight(event);});
   
   //Window listeners
   window.addEventListener("scroll", function(){getPos(scrollElems);}, false);
@@ -137,10 +139,11 @@ function smoothScroll(evt) {
   evt.preventDefault();
       
   let startElem = evt.currentTarget;  
-  if(!startElem.getAttribute("href")){
-    return;
-  }
-  let id = startElem.getAttribute("href").replace("#","");    
+  !startElem.getAttribute("href")?return:false;
+    
+  let id = startElem.getAttribute("href").replace("#","");
+  !id?return:false;
+  
   let targetElem = document.getElementById(id);  
   let startPos = startElem.getBoundingClientRect().top + document.documentElement.scrollTop;
   let targetPos = targetElem.getBoundingClientRect().top + document.documentElement.scrollTop;  
@@ -177,13 +180,14 @@ function toggleClass(evt) {
   let myClass = elem.getAttribute("data-toggle");
   
   if (elem.getAttribute("data-target")) {
-    
     let elems = [];
     elems = document.querySelectorAll(elem.getAttribute("data-target"));
     
     for (let i = 0; i < elems.length; i++) {
       if (elems[i].classList) {
         elems[i].classList.toggle(myClass);
+        let evt = createNewEvent("active");
+        elems[i].dispatchEvent(evt);
       }
       else {
         let arr = elems[i].className.split(" ");
@@ -195,6 +199,8 @@ function toggleClass(evt) {
         else {
           arr.push(myClass);
           elems[i].className = arr.join(" ");
+          let evt = createNewEvent("active");
+          elems[i].dispatchEvent(evt);
         }
       }
     }
@@ -242,7 +248,7 @@ function animateCounter(evt) {
     let timer = setInterval(
       function(){
         if (sum > numb) {          
-          elem.innerText = numb;          
+          elem.innerText = numb;
           clearInterval(timer);          
         }
         
@@ -253,4 +259,30 @@ function animateCounter(evt) {
   else {
     return;
   }
+}
+
+function setFullHeight(evt) {
+  let body = document.body;
+  let html = document.documentElement;
+  
+  let height = Math.max(
+              body.scrollHeight, 
+              body.offsetHeight, 
+              html.clientHeight, 
+              html.scrollHeight, 
+              html.offsetHeight);
+      
+  let elem = evt.currentTarget;
+  
+  let arr = elem.className.split(" ");
+  let i = arr.indexOf("active");
+  
+  if (i == -1) {
+    elem.style.height = "";
+  }
+  else {
+    elem.style.height = height + "px";
+  }
+  
+  return;
 }
