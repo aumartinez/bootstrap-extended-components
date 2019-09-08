@@ -1,4 +1,11 @@
+document.addEventListener("load", loader, false);
 window.addEventListener("load", run, false);
+
+function loader() {
+  let body = document.body;
+  body.style.height = "100%";
+  body.style.overflow = "hidden";
+}
 
 function run() {  
   let elems = document.querySelectorAll("*");
