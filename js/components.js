@@ -139,10 +139,14 @@ function smoothScroll(evt) {
   evt.preventDefault();
       
   let startElem = evt.currentTarget;  
-  !startElem.getAttribute("href")?return:false;
+  if(!startElem.getAttribute("href")){
+    return;
+  }
     
   let id = startElem.getAttribute("href").replace("#","");
-  !id?return:false;
+  if(!id){
+    return;
+  }
   
   let targetElem = document.getElementById(id);  
   let startPos = startElem.getBoundingClientRect().top + document.documentElement.scrollTop;
