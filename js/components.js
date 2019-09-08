@@ -193,24 +193,26 @@ function toggleClass(evt) {
     let elems = [];
     elems = document.querySelectorAll(elem.getAttribute("data-target"));
     
-    for (let i = 0; i < elems.length; i++) {
-      if (elems[i].classList) {
-        elems[i].classList.toggle(myClass);
-        let evt = createNewEvent("active");
-        elems[i].dispatchEvent(evt);
-      }
-      else {
-        let arr = elems[i].className.split(" ");
-        let ind = arr.indexOf(myClass);
-        
-        if (ind >= 0) {
-          arr.splice(ind, 1);
-        }
-        else {
-          arr.push(myClass);
-          elems[i].className = arr.join(" ");
+    if (elems.length > 0) {
+      for (let i = 0; i < elems.length; i++) {
+        if (elems[i].classList) {
+          elems[i].classList.toggle(myClass);
           let evt = createNewEvent("active");
           elems[i].dispatchEvent(evt);
+        }
+        else {
+          let arr = elems[i].className.split(" ");
+          let ind = arr.indexOf(myClass);
+          
+          if (ind >= 0) {
+            arr.splice(ind, 1);
+          }
+          else {
+            arr.push(myClass);
+            elems[i].className = arr.join(" ");
+            let evt = createNewEvent("active");
+            elems[i].dispatchEvent(evt);
+          }
         }
       }
     }
