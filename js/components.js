@@ -143,13 +143,23 @@ function getPos(elems) {
 function smoothScroll(evt) {
   evt.preventDefault();
       
-  let startElem = evt.currentTarget;  
+  let startElem = evt.currentTarget;
+  
   if(!startElem.getAttribute("href")){
     return;
   }
     
   let id = startElem.getAttribute("href").match(/#/g);
-  if(!id) {
+  
+  // If href is an URL, open URL instead
+  if(!id) {    
+    let name = "_self";
+    console.log(name);
+    if (startElem.getAttribute("target")) {
+      name = startElem.getAttribute("target");
+    }    
+    let url = startElem.getAttribute("href");
+    window.open(url, name);
     return;
   }
   
