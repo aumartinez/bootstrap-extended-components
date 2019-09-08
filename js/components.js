@@ -151,10 +151,9 @@ function smoothScroll(evt) {
     
   let id = startElem.getAttribute("href").match(/#/g);
   
-  // If href is an URL, open URL instead
+  // If href is not an ID but an URL, open URL instead
   if(!id) {    
-    let name = "_self";
-    console.log(name);
+    let name = "_self";    
     if (startElem.getAttribute("target")) {
       name = startElem.getAttribute("target");
     }    
