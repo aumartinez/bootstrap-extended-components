@@ -158,8 +158,8 @@ function smoothScroll(evt) {
       name = startElem.getAttribute("target");
     }    
     let url = startElem.getAttribute("href");
-    window.open(url, name);
-    return;
+    
+    return window.open(url, name);
   }
   
   id = startElem.getAttribute("href").replace("#","");  
