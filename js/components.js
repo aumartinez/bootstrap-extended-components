@@ -25,17 +25,22 @@ function run() {
   let countElems = filterElems(elems, "data-animate", "counter");  
   let activeElems = filterElems(elems, "data-toggle", "active");
   let sidebarMenu = filterElems(elems, "data-menu", "sidebar");
-  
-  //Initial status on page refresh
-  scrollElems?getPos(scrollElems):false;
-  countElems?getPos(countElems):false;
-  
+      
   //Add listeners  
   addEventListenerToList(linkElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(activeElems, "click", function(){toggleClass(event);});
   addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(countElems, "scrolled", function(){animateCounter(event);});
   addEventListenerToList(sidebarMenu, "active", function(){setFullHeight(event);});
+  
+  //Initial status on page refresh
+  if(scrollElems.length > 0) {
+    getPos(scrollElems);
+  }
+  
+  if(countElems.length > 0) {
+    getPos(countElems);
+  }
   
   //Window listeners
   window.addEventListener("scroll", function(){getPos(scrollElems);}, false);
