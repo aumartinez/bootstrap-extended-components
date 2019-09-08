@@ -252,12 +252,13 @@ function animateCounter(evt) {
     addClass(elem, "finish");
     let timer = setInterval(
       function(){
-        if (sum > numb) {          
-          elem.innerText = numb;
+        if (sum >= numb) {          
+          sum = numb;
+          elem.innerText = sum;
           clearInterval(timer);          
         }
         
-        elem.innerText = sum;
+        elem.innerText = sum;        
         sum += inc;
       }, timeinterval);
   }
