@@ -24,13 +24,16 @@ function run() {
   let menuElems = pullMenuElems(menu);
   let countElems = filterElems(elems, "data-animate", "counter");  
   let activeElems = filterElems(elems, "data-toggle", "active");
-  let sidebarMenu = filterElems(elems, "data-menu", "sidebar");
+  let sidebarMenu = filterElems(elems, "data-animate", "sidebar-menu");
+  let hoverElems = filterElems(elems, "data-animate", "hover");
       
   //Add listeners  
   addEventListenerToList(linkElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(activeElems, "click", function(){toggleClass(event);});
   addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(countElems, "scrolled", function(){animateCounter(event);});
+  addEventListenerToList(hoverElems, "mouseover", function(){activeState(event);});
+  addEventListenerToList(hoverElems, "mouseout", function(){inactiveState(event);});
   addEventListenerToList(sidebarMenu, "active", function(){setFullHeight(event);});
   
   //Initial status on page refresh
@@ -61,8 +64,10 @@ function filterElems(elems, attribute, data) {
 
 function addEventListenerToList(list, evt, func) {
   let arr = list;
-  for (let i = 0; i < arr.length; i++) {
-    arr[i].addEventListener(evt, func, false);
+  if (arr) {
+    for (let i = 0; i < arr.length; i++) {
+      arr[i].addEventListener(evt, func, false);
+    }
   }
 }
 
@@ -85,6 +90,20 @@ function addClass (elem, myClass) {
     let i = arr.indexOf(myClass);
     if (i == -1) {
       arr.push(myClass);
+      elem.className = arr.join(" ");
+    }
+  }
+}
+
+function removeClass (elem, myClass) {
+  if (elem.clasList) {
+    elem.classList.remove(myClass);
+  }
+  else {
+    let arr = elem.className.split(" ");
+    let i = arr.indexOf(myClass);
+    if (i > 0) {
+      arr.splice(i, 1);
       elem.className = arr.join(" ");
     }
   }
@@ -143,7 +162,7 @@ function getPos(elems) {
 function smoothScroll(evt) {
   evt.preventDefault();
       
-  let startElem = evt.currentTarget;
+  let startElem = evt.currentTarget;  
   
   if(!startElem.getAttribute("href")){
     return;
@@ -164,8 +183,8 @@ function smoothScroll(evt) {
   
   id = startElem.getAttribute("href").replace("#","");  
   let targetElem = document.getElementById(id);  
-  let startPos = Math.round(startElem.getBoundingClientRect().top + document.documentElement.scrollTop);
-  let targetPos = Math.round(targetElem.getBoundingClientRect().top + document.documentElement.scrollTop);  
+  let startPos = Math.round(startElem.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop));
+  let targetPos = Math.round(targetElem.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop));  
   let len = Math.abs(startPos - targetPos);
   
   //Can play with timeinterval and parts, total animation timing is: time * parts
@@ -173,16 +192,20 @@ function smoothScroll(evt) {
   let parts = 50;
   
   let inc = Math.round(len / parts);
-  let sum = 0;
+  let sum = 0;  
+  
+  let url = window.location.href;
+  url = url.substring(0, url.indexOf("#"));  
+  url += "#" + id;
   
   let scrollFunc = setInterval(
     function() {
       if (Math.abs(sum) >= len) {        
-        document.documentElement.scrollTop = targetPos;
         clearInterval(scrollFunc);
+        return window.open(url, "_self");
       }
       
-      document.documentElement.scrollTop = startPos + sum;      
+      window.scrollTo(0, (startPos + sum));
       
       if (startPos > targetPos) {
         sum -= inc;        
@@ -192,6 +215,7 @@ function smoothScroll(evt) {
       }
       
     }, timeinterval);
+    
 }
 
 function toggleClass(evt) {
@@ -307,4 +331,18 @@ function setFullHeight(evt) {
   }
   
   return;
+}
+
+function activeState(evt) {
+  let elem = evt.currentTarget;
+  let myClass = "active";
+  
+  addClass(elem, myClass);
+}
+
+function inactiveState(evt) {
+  let elem = evt.currentTarget;
+  let myClass = "active";
+  
+  removeClass(elem, myClass);
 }
