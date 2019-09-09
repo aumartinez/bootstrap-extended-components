@@ -250,7 +250,7 @@ header {
 
 .about-cards .card {
   min-height: 270px;
-  overflow: hidden;
+  overflow: hidden;  
 }
 
 .about-cards .bg-card-01 {
@@ -272,7 +272,7 @@ header {
 }
 
 .about-cards .card-cont { 
-  height: 270px;
+  min-height: 270px;
   width: 100%;
   display: table;
   padding: 15px;  
@@ -303,7 +303,6 @@ header {
   padding-right: 10px;
 }
 
-.card.active .card-cont,
 .card:focus .card-cont,
 .card:hover .card-cont {
   -webkit-transform: translateY(0);
@@ -312,7 +311,6 @@ header {
   background-color: #61035D;
 }
 
-.card.active .card-cont p:last-child,
 .card:focus .card-cont p:last-child,
 .card:hover .card-cont p:last-child {
   -webkit-transform: translateY(0);
@@ -431,13 +429,14 @@ h2.sec-title span {
   padding: 25px 15px;  
 }
 
-.flip-card-front,
-.flip-card-back {
+.flip-card .flip-card-front,
+.flip-card .flip-card-back {
   height: 300px;
   width: 100%;
   position: absolute;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transition: backface-visibility 0.2s;
 }
 
 .flip-card-back {
@@ -486,7 +485,6 @@ h2.sec-title span {
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
 }
-
 
 /* Awards */
 
@@ -856,6 +854,5 @@ section.copyright ul.bottom-social li a {
     float: none;
     margin: 0;
   }
-  
   
 }
