@@ -250,7 +250,7 @@ header {
 
 .about-cards .card {
   min-height: 270px;
-  overflow: hidden;  
+  overflow: hidden;
 }
 
 .about-cards .bg-card-01 {
@@ -272,7 +272,7 @@ header {
 }
 
 .about-cards .card-cont { 
-  min-height: 270px;
+  height: 270px;
   width: 100%;
   display: table;
   padding: 15px;  
@@ -303,6 +303,7 @@ header {
   padding-right: 10px;
 }
 
+.card.active .card-cont,
 .card:focus .card-cont,
 .card:hover .card-cont {
   -webkit-transform: translateY(0);
@@ -311,6 +312,7 @@ header {
   background-color: #61035D;
 }
 
+.card.active .card-cont p:last-child,
 .card:focus .card-cont p:last-child,
 .card:hover .card-cont p:last-child {
   -webkit-transform: translateY(0);
