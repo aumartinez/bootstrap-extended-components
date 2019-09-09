@@ -164,8 +164,8 @@ function smoothScroll(evt) {
   
   id = startElem.getAttribute("href").replace("#","");  
   let targetElem = document.getElementById(id);  
-  let startPos = startElem.getBoundingClientRect().top + document.documentElement.scrollTop;
-  let targetPos = targetElem.getBoundingClientRect().top + document.documentElement.scrollTop;  
+  let startPos = Math.round(startElem.getBoundingClientRect().top + document.documentElement.scrollTop);
+  let targetPos = Math.round(targetElem.getBoundingClientRect().top + document.documentElement.scrollTop);  
   let len = Math.abs(startPos - targetPos);
   
   //Can play with timeinterval and parts, total animation timing is: time * parts
@@ -177,12 +177,12 @@ function smoothScroll(evt) {
   
   let scrollFunc = setInterval(
     function() {
-      if (Math.abs(sum) >= len) {
+      if (Math.abs(sum) >= len) {        
         document.documentElement.scrollTop = targetPos;
         clearInterval(scrollFunc);
       }
       
-      document.documentElement.scrollTop = startPos + sum;
+      document.documentElement.scrollTop = startPos + sum;      
       
       if (startPos > targetPos) {
         sum -= inc;        
