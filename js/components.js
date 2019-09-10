@@ -189,14 +189,14 @@ function smoothScroll(evt) {
   
   //Can play with timeinterval and parts, total animation timing is: time * parts
   let timeinterval = 10;
-  let parts = 50;
+  let parts = Math.round(len / 25);
   
   let inc = Math.round(len / parts);
-  let sum = 0;  
-  
-  let url = window.location.href;
+  let sum = 0;
+    
+  let url = window.location.href;  
   url = url.substring(0, url.indexOf("#"));  
-  url += "#" + id;
+  url += "#" + id;    
   
   let scrollFunc = setInterval(
     function() {
@@ -282,14 +282,14 @@ function animateCounter(evt) {
   let inc = Math.round(numb / parts);
   let sum = 0;
   
-  //Check if element has "finish" class
+  //Check if element has "counting" class
   let arr = elem.className.split(" ");
-  let ind = arr.indexOf("finish");
+  let ind = arr.indexOf("counting");
   
-  //If element doesn't has "finish" class play animation
+  //If element doesn't has "counting" class play animation
   if (ind == -1) {
-    //Add a "finish" class to the element and start counter
-    addClass(elem, "finish");
+    //Add a "counting" class to the element and start counter
+    addClass(elem, "counting");
     let timer = setInterval(
       function(){
         if (sum >= numb) {          
