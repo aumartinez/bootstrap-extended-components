@@ -147,7 +147,7 @@ function getPos(elems) {
       curr[i] = window.innerHeight + window.scrollY;
     }
     else{
-      elemPos[i] = elems[i].getBoundingClientRect().top + document.documentElement.scrollTop;
+      elemPos[i] = elems[i].getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
       curr[i] = window.innerHeight + document.documentElement.scrollTop;
     }
     if (curr[i] > (elemPos[i] + (elems[i].offsetHeight / 4))) {
@@ -189,7 +189,7 @@ function smoothScroll(evt) {
   
   //Can play with timeinterval and parts, total animation timing is: time * parts
   let timeinterval = 10;
-  let parts = Math.round(len / 25);
+  let parts = 80;
   
   let inc = Math.round(len / parts);
   let sum = 0;
