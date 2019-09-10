@@ -147,8 +147,8 @@ function getPos(elems) {
       curr[i] = window.innerHeight + window.scrollY;
     }
     else{
-      elemPos[i] = elems[i].getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
-      curr[i] = window.innerHeight + (window.pageYOffset || document.documentElement.scrollTop);
+      elemPos[i] = elems[i].getBoundingClientRect().top + document.documentElement.scrollTop;
+      curr[i] = window.innerHeight + document.documentElement.scrollTop;
     }
     if (curr[i] > (elemPos[i] + (elems[i].offsetHeight / 4))) {
       addClass(elems[i], "active");
