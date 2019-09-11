@@ -37,7 +37,8 @@ To the link anchor element, add the attribute <code>data-animate="link-scroll"</
 
 ```html
 <p>
-  <a href="#copyright" class="color-primary" data-animate="link-scroll">Go to copyright <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+  <a href="#copyright" class="color-primary" data-animate="link-scroll">Go to copyright 
+  <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
 </p>
 
 <!-- Lots of content -->
