@@ -133,7 +133,7 @@ The CSS to apply a transition to the hovering element would be as below:
   background-color: #61035D;
 }
 ```
-Notice "active" class selector.
+Notice the "active" class selector.
 
 ## Preview sample with examples implemented
 
