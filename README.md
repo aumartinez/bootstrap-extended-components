@@ -93,6 +93,20 @@ To apply a typing animation effect to a section title, just add the attribute <c
 </h2>
 ```
 
+### Active states toggling
+
+From time to time, there is a requirment to add a different states to elements when these are clicked or hovered, the only option available in BS is the "collapse" component, but tweaking the collapse classes and animation may cause a headache, then whenever there is a need to add an "active/inactive" state to an HTML element and then manipulate the element with this new state, just add the attribute <code>data-toggle="active"</code> to the element. A JS listener will add a class "active" to the element class list and it will make it available to further manipulation.
+
+```html
+<div class="flip-card" data-toggle="active">
+  <div class="flip-card-inner">
+   <div class="flip-card-front bg-tertiary">
+     <div class="card-front-head">
+       <!-- more content -->
+```
+
+With the active state toggling you can also target an ID or a group of classes just by adding to the same element the attribute <code>data-target="#our-team"</code> or <code>data-target=".myclass"</code>. This will add an "active" class to the targeted elements.
+
 ## Preview sample with examples implemented
 
 A live sample can be reviewed at: https://accedo-gps.000webhostapp.com/demo/bs-extended/index.html
