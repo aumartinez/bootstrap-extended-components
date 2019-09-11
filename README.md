@@ -107,6 +107,34 @@ From time to time, there is a requirment to add a different states to elements w
 
 With the active state toggling you can also target an ID or a group of classes just by adding to the same element the attribute <code>data-target="#our-team"</code> or <code>data-target=".myclass"</code>. This will add an "active" class to the targeted elements.
 
+### Active states on hover event
+
+In iOS browsers (Safari), to apply a :hover selector styling it is required to implement this to an anchor element <code>&lt;a&gt;</code>, a workaround can be implemented with JS, forcing to add an "active" class to the hovered element and then manipulating the element with this active state.
+
+To apply a hover active state, just add the attribute <code>data-animate="hover"</code> to the element.
+
+```html
+<div class="col-sm-4">
+  <div class="card bg-card-03" data-animate="hover">
+    <div class="card-cont">
+      <h3 class="color-tertiary">
+        A heading title
+      </h3>
+      <!-- more content -->
+```
+The CSS to apply a transition to the hovering element would be as below:
+```CSS
+.card.active .card-cont,
+.card:focus .card-cont,
+.card:hover .card-cont {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+  background-color: #61035D;
+}
+```
+Notice "active" class selector.
+
 ## Preview sample with examples implemented
 
 A live sample can be reviewed at: https://accedo-gps.000webhostapp.com/demo/bs-extended/index.html
