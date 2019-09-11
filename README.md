@@ -66,7 +66,7 @@ To the heading or block element, just add the attribute <code>data-animate="scro
 </h2>
 ```
 
-#### Counting numbers
+### Counting numbers
 
 To apply a counting animation to a number that requires the user attention/focus just add the attribute <code>data-animate="counter"</code> to the element, and the class "ani-counter" to the class list. The animation will be triggered on the "scroll" event.
 
