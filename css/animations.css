@@ -1,5 +1,12 @@
 /* animations stylesheet */
 
+.ani-blink {
+  -webkit-animation: blink 0.5s linear;
+  animation: blink 0.5s linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;  
+}
+
 .ani-fade-in,
 .ani-fade-top {
   opacity: 0;
@@ -17,6 +24,26 @@
   animation: fade-in-top 2s ease;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
+}
+
+/* Blinking */
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Fade in place */
