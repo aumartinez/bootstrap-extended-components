@@ -1,21 +1,7 @@
 window.addEventListener("load", run, false);
 
 function run() {  
-  let elems = document.querySelectorAll("*");
-  let body = document.querySelector("body");
-  
-  if(typeof body.style.WebkitAnimationName === "undefined") {    
-    if(typeof body.style.animationName === "undefined") {
-      console.log("Animation CSS keyframes not supported");
-      let css = document.createElement("style");
-      css.type = "text/css";
-      
-      let styles = "*[class*=\"ani-fade\"]{opacity: 1 !important;}";
-      css.appendChild(document.createTextNode(styles));
-      
-      document.getElementsByTagName("head")[0].appendChild(css);     
-    }
-  } 
+  let elems = document.querySelectorAll("*");  
   
   //Filter elements
   let scrollElems = filterElems(elems, "data-animate", "scroll");
@@ -23,8 +9,7 @@ function run() {
   let menu = filterElems(elems, "data-animate", "navbar-scroll");
   let menuElems = pullMenuElems(menu);
   let countElems = filterElems(elems, "data-animate", "counter");  
-  let activeElems = filterElems(elems, "data-toggle", "active");
-  let sidebarMenu = filterElems(elems, "data-animate", "sidebar-menu");
+  let activeElems = filterElems(elems, "data-toggle", "active");  
   let hoverElems = filterElems(elems, "data-animate", "hover");
   let typeElems = filterElems(elems, "data-animate", "type");
       
@@ -33,8 +18,7 @@ function run() {
   addEventListenerToList(activeElems, "click", function(){toggleClass(event);});
   addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});  
   addEventListenerToList(hoverElems, "mouseover", function(){activeState(event);});
-  addEventListenerToList(hoverElems, "mouseout", function(){inactiveState(event);});  
-  addEventListenerToList(sidebarMenu, "active", function(){setFullHeight(event);});  
+  addEventListenerToList(hoverElems, "mouseout", function(){inactiveState(event);});    
   addEventListenerToList(countElems, "scrolled", function(){animateCounter(event);});
   
   addEventListenerToListOnce(typeElems, "scrolled", function(){typeIt(event);});  
@@ -308,7 +292,7 @@ function animateCounter(evt) {
         if (sum >= numb) {          
           sum = numb;
           elem.innerText = sum;
-          clearInterval(timer);          
+          return clearInterval(timer);          
         }
         else{
           elem.innerText = sum;        
@@ -319,32 +303,6 @@ function animateCounter(evt) {
   else {
     return;
   }
-}
-
-function setFullHeight(evt) {
-  let body = document.body;
-  let html = document.documentElement;
-  
-  let height = Math.max(
-              body.scrollHeight, 
-              body.offsetHeight, 
-              html.clientHeight, 
-              html.scrollHeight, 
-              html.offsetHeight);
-      
-  let elem = evt.currentTarget;
-  
-  let arr = elem.className.split(" ");
-  let i = arr.indexOf("active");
-  
-  if (i == -1) {
-    elem.style.height = "";
-  }
-  else {
-    elem.style.height = height + "px";
-  }
-  
-  return;
 }
 
 function activeState(evt) {
