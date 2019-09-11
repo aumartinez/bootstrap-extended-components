@@ -19,7 +19,7 @@ To implement smooth scrolling there are 2 options:
 
 #### Smooth scrolling from the navigation tabs
 
-To the ul list element add the attribute <code>data-animate="navbar-scroll"</code> and the job is done. Enjoy it.
+To the ul navigation tab list element, add the attribute <code>data-animate="navbar-scroll"</code> and the job is done. Enjoy it.
 
 ```html
 <ul class="nav navbar-nav navbar-right" data-animate="navbar-scroll">  
@@ -29,6 +29,22 @@ To the ul list element add the attribute <code>data-animate="navbar-scroll"</cod
   <li><a href="#news">News</a></li>                  
   <li><a href="https://www.google.com" class="btn bg-tertiary">Contact Us</a></li>
  </ul>
+```
+
+#### Smooth scrolling from a content link
+
+To the link anchor element, add the attribute <code>data-animate="link-scroll"</code> and the job is donde. Enjoy it.
+
+```html
+<p>
+  <a href="#copyright" class="color-primary" data-animate="link-scroll">Go to copyright <i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+</p>
+
+<!-- Lots of content -->
+
+<div id="#copyright">
+</div>
+
 ```
 
 ## Preview sample
