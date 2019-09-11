@@ -64,6 +64,6 @@ To the heading or block element, just add the attribute <code>data-animate="scro
 </h2>
 ```
 
-## Preview sample
+## Preview sample with examples implemented
 
 A live sample can be reviewed at: https://accedo-gps.000webhostapp.com/demo/bs-extended/index.html
