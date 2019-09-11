@@ -351,14 +351,14 @@ function activeState(evt) {
   let elem = evt.currentTarget;
   let myClass = "active";
   
-  addClass(elem, myClass);
+  return addClass(elem, myClass);
 }
 
 function inactiveState(evt) {
   let elem = evt.currentTarget;
   let myClass = "active";
   
-  removeClass(elem, myClass);
+  return removeClass(elem, myClass);
 }
 
 function typeIt(evt) {
