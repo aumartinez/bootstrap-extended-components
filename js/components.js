@@ -76,10 +76,10 @@ function addEventListenerToListOnce(list, evt, fn) {
   if (arr) {
     for (let i = 0; i < arr.length; i++) {
       let func = function() {
-        arr[i].removeEventListener(evt, func);
+        arr[i].removeEventListener(evt, func, false);
         fn();
       };
-      arr[i].addEventListener(evt, func);
+      arr[i].addEventListener(evt, func, false);
     }
   }
 }
