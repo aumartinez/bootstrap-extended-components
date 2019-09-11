@@ -4,7 +4,7 @@ function run() {
   let elems = document.querySelectorAll("*");
   let body = document.querySelector("body");
   
-  if(typeof body.style.WebkitAnimationName === "undefined") {
+  if(typeof body.style.WebkitAnimationName === "undefined") {    
     if(typeof body.style.animationName === "undefined") {
       console.log("Animation CSS keyframes not supported");
       let css = document.createElement("style");
@@ -26,28 +26,28 @@ function run() {
   let activeElems = filterElems(elems, "data-toggle", "active");
   let sidebarMenu = filterElems(elems, "data-animate", "sidebar-menu");
   let hoverElems = filterElems(elems, "data-animate", "hover");
+  let typeElems = filterElems(elems, "data-animate", "type");
       
   //Add listeners  
   addEventListenerToList(linkElems, "click", function(){smoothScroll(event);});
   addEventListenerToList(activeElems, "click", function(){toggleClass(event);});
-  addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});
-  addEventListenerToList(countElems, "scrolled", function(){animateCounter(event);});
+  addEventListenerToList(menuElems, "click", function(){smoothScroll(event);});  
   addEventListenerToList(hoverElems, "mouseover", function(){activeState(event);});
-  addEventListenerToList(hoverElems, "mouseout", function(){inactiveState(event);});
-  addEventListenerToList(sidebarMenu, "active", function(){setFullHeight(event);});
+  addEventListenerToList(hoverElems, "mouseout", function(){inactiveState(event);});  
+  addEventListenerToList(sidebarMenu, "active", function(){setFullHeight(event);});  
+  addEventListenerToList(countElems, "scrolled", function(){animateCounter(event);});
   
+  addEventListenerToListOnce(typeElems, "scrolled", function(){typeIt(event);});  
+    
   //Initial status on page refresh
-  if(scrollElems.length > 0) {
-    getPos(scrollElems);
-  }
-  
-  if(countElems.length > 0) {
-    getPos(countElems);
-  }
+  (scrollElems.length > 0)?getPos(scrollElems):false;
+  (countElems.length > 0)?getPos(countElems):false;
+  (typeElems.length > 0)?getPos(typeElems):false;
   
   //Window listeners
   window.addEventListener("scroll", function(){getPos(scrollElems);}, false);
   window.addEventListener("scroll", function(){getPos(countElems);}, false);
+  window.addEventListener("scroll", function(){getPos(typeElems);}, false);
 }
 
 //Helpers
@@ -67,6 +67,19 @@ function addEventListenerToList(list, evt, func) {
   if (arr) {
     for (let i = 0; i < arr.length; i++) {
       arr[i].addEventListener(evt, func, false);
+    }
+  }
+}
+
+function addEventListenerToListOnce(list, evt, fn) {  
+  let arr = list;
+  if (arr) {
+    for (let i = 0; i < arr.length; i++) {
+      let func = function() {
+        arr[i].removeEventListener(evt, func);
+        fn();
+      };
+      arr[i].addEventListener(evt, func);
     }
   }
 }
@@ -297,9 +310,10 @@ function animateCounter(evt) {
           elem.innerText = sum;
           clearInterval(timer);          
         }
-        
-        elem.innerText = sum;        
-        sum += inc;
+        else{
+          elem.innerText = sum;        
+          sum += inc;
+        }
       }, timeinterval);
   }
   else {
@@ -345,4 +359,41 @@ function inactiveState(evt) {
   let myClass = "active";
   
   removeClass(elem, myClass);
+}
+
+function typeIt(evt) {
+  let elem = evt.currentTarget;
+  let str = elem.innerText;  
+  let span = document.createElement("span");  
+  let thisStyles = getComputedStyle(elem, null);
+  let spanWidth = (Math.round(parseInt(thisStyles.fontSize.replace("px"))/2)) + "px";
+  let borderWidth = (Math.round(parseInt(thisStyles.fontSize.replace("px"))/5)) + "px"; 
+      
+  span.style.display = "inline-block";
+  span.style.width = spanWidth;
+  span.style.borderBottomStyle = "solid";
+  span.style.borderBottomWidth = borderWidth;  
+  span.style.marginLeft = "10px";
+
+  let time = (str.length < 30)?100:50;
+  let i = 0;
+  let typeStr = "";
+  elem.innerText = " ";
+    
+  let typer = setInterval(
+    function() {
+      if(i == str.length) {        
+        elem.innerText = str;
+        elem.appendChild(span);
+        addClass(elem.lastElementChild, "ani-blink");
+        clearInterval(typer);
+      }
+      else {
+        typeStr += str[i];
+        elem.innerText = typeStr;
+        elem.appendChild(span);
+        i++;
+      }      
+    }, time);
+  
 }
