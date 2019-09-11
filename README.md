@@ -48,6 +48,22 @@ To the link anchor element, add the attribute <code>data-animate="link-scroll"</
 
 ```
 
+### Revealing/Animating elements on scrolling
+
+To add animations or transitions to any HTML element and to fire/trigger the animation once the element is revealed in the window screen, just add the attribute <code>data-animate="scroll"</code>.
+
+Any element with this attribute will fire a "scroll" event and a class "active" will be added to it. Then with the "active" class added we can manipulate it in the right timing.
+
+#### Fade in from bottom to top headings or blocks
+
+To the heading or block element, just add the attribute <code>data-animate="scroll"</code>, and the class "ani-fade-top" to the class list. Once the element is revealed in the screen while scrolling it will fire the CSS keyframes animation. A variation on this animation would be to use the class "ani-fade-in" instead, which will only apply a "fade in" effect to the element, without the transition from bottom to top.
+
+```html
+<h2 class="sec-title text-center color-secondary">
+  <span data-animate="scroll" class="ani-fade-top">Our Services</span>
+</h2>
+```
+
 ## Preview sample
 
 A live sample can be reviewed at: https://accedo-gps.000webhostapp.com/demo/bs-extended/index.html
