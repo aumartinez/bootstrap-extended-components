@@ -83,6 +83,16 @@ To apply a counting animation to a number that requires the user attention/focus
 </div>
 ```
 
+### Typing a heading title
+
+To apply a typing animation effect to a section title, just add the attribute <code>data-animate="type"</code> to the element. The animation will be triggered on the "scroll" event.
+
+```html
+<h2 class="sub-title color-secondary" data-animate="type">
+  A new subtitle with a meaningful content
+</h2>
+```
+
 ## Preview sample with examples implemented
 
 A live sample can be reviewed at: https://accedo-gps.000webhostapp.com/demo/bs-extended/index.html
