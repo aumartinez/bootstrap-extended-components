@@ -3,7 +3,9 @@ BootStrap extended JS and animation components
 
 ## A BootStrap extension application
 
-Added new features to BS components for further site developments
+Added new features to BootStrap components for further site developments. 
+
+I'm assuming you are familiar to BS, CSS and HTML at least.
 
 ## How to implement
 
@@ -62,6 +64,23 @@ To the heading or block element, just add the attribute <code>data-animate="scro
 <h2 class="sec-title text-center color-secondary">
   <span data-animate="scroll" class="ani-fade-top">Our Services</span>
 </h2>
+```
+
+#### Counting numbers
+
+To apply a counting animation to a number that requires the user attention/focus just add the attribute <code>data-animate="counter"</code> to the element, and the class "ani-counter" to the class list. The animation will be triggered on the "scroll" event.
+
+```html
+<div class="col-sm-3">
+  <div class="awards-item">
+    <h3>
+      <span data-animate="counter" class="ani-counter">75</span>
+   </h3>
+   <p>
+     Clients Worldwide
+   </p>
+ </div>
+</div>
 ```
 
 ## Preview sample with examples implemented
