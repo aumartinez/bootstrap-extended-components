@@ -1,7 +1,9 @@
 window.addEventListener("load", run, false);
 
 function run() {  
-  let elems = document.querySelectorAll("body *");  
+  let elems = document.querySelectorAll("body *");
+  
+  activeMenu();
   
   //Filter elements
   let scrollElems = filterElems(elems, "data-animate", "scroll");
@@ -31,7 +33,7 @@ function run() {
   //Window listeners
   window.addEventListener("scroll", function(){getPos(scrollElems);}, false);
   window.addEventListener("scroll", function(){getPos(countElems);}, false);
-  window.addEventListener("scroll", function(){getPos(typeElems);}, false);
+  window.addEventListener("scroll", function(){getPos(typeElems);}, false);  
 }
 
 //Helpers
@@ -132,6 +134,50 @@ function createNewEvent(evtName) {
   return evt;
 }
 
+function activeMenu() {
+  let curr = "";
+  
+  if(window.location.hash == ""){
+    curr = window.location.href;
+  }
+  else {
+    curr = window.location.hash;
+  }
+  
+  let menu = document.querySelector("ul.navbar-nav");
+  let menuItems = [];
+  let menuParents = [];
+  let activeItem;
+  
+  curr = curr.split("/");
+  curr = curr[curr.length - 1];
+  
+  if(menu){
+    menuItems = menu.querySelectorAll("a");
+    menuParents = menu.querySelectorAll("li");
+    
+    for(let i = 0; i < menuItems.length; i++) {
+      let str = menuItems[i].getAttribute("href");      
+    
+      if(str == curr){  
+        activeItem = menuItems[i];        
+      }      
+    }
+    
+    if(!activeItem){
+      activeItem = menuItems[0];
+    }
+    
+    for(let i = 0; i < menuParents.length; i++) {
+      removeClass(menuParents[i], "active");
+      if(menuParents[i].contains(activeItem)){
+        addClass(menuParents[i], "active");
+      }
+    }
+    
+  }
+}
+
 //Animate + change state functions
 
 function getPos(elems) {  
@@ -198,8 +244,8 @@ function smoothScroll(evt) {
   let scrollFunc = setInterval(
     function() {
       if (Math.abs(sum) >= len) {        
-        clearInterval(scrollFunc);
-        return window.open(url, "_self");
+        clearInterval(scrollFunc);        
+        return window.open(url, "_self"), activeMenu();
       }
       
       window.scrollTo(0, (startPos + sum));
