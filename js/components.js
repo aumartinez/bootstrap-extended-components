@@ -135,14 +135,8 @@ function removeClass (elem, myClass) {
 }
 
 function activeMenu() {
-  let curr = "";
-  
-  if(window.location.hash == ""){
-    curr = window.location.href;
-  }
-  else {
-    curr = window.location.hash;
-  }
+  let curr = "";  
+  curr = window.location.href;
   
   let menu = document.querySelector("ul.navbar-nav");
   let menuParents = menu.children;
@@ -151,6 +145,9 @@ function activeMenu() {
   
   curr = curr.split("/");
   curr = curr[curr.length - 1];
+  if(curr.match("#")){
+    curr = curr.split("#");
+  }
   
   if(menu){
     menuItems = menu.querySelectorAll("a");
@@ -159,14 +156,21 @@ function activeMenu() {
       let str = menuItems[i].getAttribute("href");
       str = str.split("/");
       str = str[str.length - 1];
-      if(str == curr){  
-        activeItem = menuItems[i];
-      }      
-    }
-    
-    if(!activeItem){
-      activeItem = menuItems[0];
-    }
+      
+      if(typeof curr == "string"){
+        if (str == curr){
+          activeItem = menuItems[i];          
+        }
+      }
+      if(typeof curr == "object"){
+        str = str.split("#");        
+        if (str[1] == curr[1] || str[0] == curr[0]){
+          activeItem = menuItems[i];
+        }
+        
+      }
+      
+    }  
     
     for(let i = 0; i < menuParents.length; i++) {
       removeClass(menuParents[i], "active");
