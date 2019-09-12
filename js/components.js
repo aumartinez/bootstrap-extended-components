@@ -1,7 +1,7 @@
 window.addEventListener("load", run, false);
 
 function run() {  
-  let elems = document.querySelectorAll("*");  
+  let elems = document.querySelectorAll("body *");  
   
   //Filter elements
   let scrollElems = filterElems(elems, "data-animate", "scroll");
