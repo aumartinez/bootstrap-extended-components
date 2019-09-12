@@ -123,7 +123,7 @@ Then whenever there is a need to add an "active/inactive" state to an HTML eleme
 
 A "click" event JS listener will add a class "active" to the element class list and it will make it available to further manipulation.
 
-* Inactive State *
+**Inactive State
 ```html
 <div class="flip-card" data-toggle="active">
   <div class="flip-card-inner">
@@ -132,7 +132,7 @@ A "click" event JS listener will add a class "active" to the element class list 
        <!-- more content -->
 ```
 
-* Active State *
+**Active State
 
 ```html
 <div class="flip-card active" data-toggle="active">
