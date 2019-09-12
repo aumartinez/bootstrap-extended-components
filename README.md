@@ -74,7 +74,7 @@ A variation on the previous animation would be to use the class "ani-fade-in" in
 </h2>
 ```
 
-#### More animtion options
+#### More animation options
 
 Since the window listener will trigger the "scroll" event on each element with the corresponding attribute and add an "active" class to the element. Any new keyframes animation could be added to them for example:
 
