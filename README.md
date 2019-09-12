@@ -5,8 +5,6 @@ BootStrap extended JS and animation components
 
 Added new features to BootStrap components for further site developments. 
 
-I'm assuming you are familiar to BS, CSS and HTML at least.
-
 ## How to implement
 
 To implement the new added features you need to:
