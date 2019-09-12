@@ -80,6 +80,32 @@ function pullMenuElems(elems) {
   return arr;
 }
 
+function callOnce(func) {
+  let called = false;
+  return function() {
+    if (!called) {
+      called = true;
+      return func();
+    }
+    else {
+      return;
+    }
+  }
+}
+
+function createNewEvent(evtName) {
+  let evt;
+  if (typeof Event === "function") {
+    evt = new Event(evtName);
+  }
+  else {
+    evt = document.createEvent("Event");
+    evt.initEvent(evtName, true, true);
+  }
+  
+  return evt;
+}
+
 function addClass (elem, myClass) {
   if (elem.clasList) {
     elem.classList.add(myClass);
@@ -108,32 +134,6 @@ function removeClass (elem, myClass) {
   }
 }
 
-function callOnce(func) {
-  let called = false;
-  return function() {
-    if (!called) {
-      called = true;
-      return func();
-    }
-    else {
-      return;
-    }
-  }
-}
-
-function createNewEvent(evtName) {
-  let evt;
-  if (typeof Event === "function") {
-    evt = new Event(evtName);
-  }
-  else {
-    evt = document.createEvent("Event");
-    evt.initEvent(evtName, true, true);
-  }
-  
-  return evt;
-}
-
 function activeMenu() {
   let curr = "";
   
@@ -145,8 +145,8 @@ function activeMenu() {
   }
   
   let menu = document.querySelector("ul.navbar-nav");
-  let menuItems = [];
-  let menuParents = [];
+  let menuParents = menu.children;
+  let menuItems = [];  
   let activeItem;
   
   curr = curr.split("/");
@@ -154,13 +154,13 @@ function activeMenu() {
   
   if(menu){
     menuItems = menu.querySelectorAll("a");
-    menuParents = menu.querySelectorAll("li");
     
     for(let i = 0; i < menuItems.length; i++) {
-      let str = menuItems[i].getAttribute("href");      
-    
+      let str = menuItems[i].getAttribute("href");
+      str = str.split("/");
+      str = str[str.length - 1];
       if(str == curr){  
-        activeItem = menuItems[i];        
+        activeItem = menuItems[i];
       }      
     }
     
