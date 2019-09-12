@@ -74,6 +74,20 @@ A variation on the previous animation would be to use the class "ani-fade-in" in
 </h2>
 ```
 
+#### More animtion options
+
+Since the window listener will trigger the "scroll" event on each element with the corresponding attribute and add an "active" class to the element. Any new keyframes animation could be added to them for example:
+
+- Move from left to right
+- Move from right to left
+- Fade in from left to right
+- Fade in from right to left
+- Scale in
+- Scale out
+- Shake it
+
+... and so on, the sky is the limit.
+
 ### Counting numbers
 
 To apply a counting animation to a number that requires the user attention/focus just add the attribute <code>data-animate="counter"</code> to the element, and the class "ani-counter" to the class list. The animation will be triggered on the "scroll" event.
