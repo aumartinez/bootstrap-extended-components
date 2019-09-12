@@ -103,7 +103,7 @@ To apply a typing animation effect to a section title, just add the attribute <c
 
 ### Active states toggling
 
-From time to time, there is a requirment to add different states to elements when these are clicked or hovered, the only option available in BS is the "collapse" component, but tweaking the collapse classes and animation may cause a headache, then whenever there is a need to add an "active/inactive" state to an HTML element and then manipulate the element with this new state, just add the attribute <code>data-toggle="active"</code> to the element. A JS listener will add a class "active" to the element class list and it will make it available to further manipulation.
+From time to time, there is a requirment to add different states to elements when these are clicked or hovered, the only option available in BS is the "collapse" component, but tweaking the collapse classes and animation may cause a headache, then whenever there is a need to add an "active/inactive" state to an HTML element and then manipulate the element with this new state, just add the attribute <code>data-toggle="active"</code> to the element. A "click" event JS listener will add a class "active" to the element class list and it will make it available to further manipulation.
 
 ```html
 <div class="flip-card" data-toggle="active">
