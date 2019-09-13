@@ -165,7 +165,6 @@ function activeMenu() {
         if (str[1] == curr[1] || str[0] == curr[0]){
           activeItem = menuItems[i];
         }
-        
       }
       
     }  
