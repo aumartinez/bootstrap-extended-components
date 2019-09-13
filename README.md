@@ -146,7 +146,7 @@ With the active state toggling you can also target an ID or a group of classes j
 
 ### Active states on hover event
 
-In iOS browsers (Safari), to apply a :hover selector styling it is required to implement this to an anchor element <code>&lt;a&gt;</code>, a workaround can be implemented with JS, forcing to add an "active" class to the hovered element and then manipulating the element with this active state.
+In iOS browsers (Safari), to apply a :hover selector styling it is required to implement this to an anchor element <code>&lt;a&gt;</code>, a workaround can be implemented with JS to regular blocks, forcing to add an "active" class to the hovered element and then manipulating the element with this active state.
 
 To apply a hover active state, just add the attribute <code>data-animate="hover"</code> to the element.
 
