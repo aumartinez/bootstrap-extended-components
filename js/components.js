@@ -125,7 +125,7 @@ function removeClass (elem, myClass) {
   else {
     let arr = elem.className.split(" ");
     let i = arr.indexOf(myClass);
-    if (i > 0) {
+    if (i >= 0) {
       arr.splice(i, 1);
       elem.className = arr.join(" ");
     }
