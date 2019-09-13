@@ -30,7 +30,7 @@ function run() {
    
    if (befores.backgroundImage !== "none") {
      let imgSrc = befores.backgroundImage;
-     str = regExExecute(imgSrc);
+     let str = regExExecute(imgSrc);
      
      let rule = "*[data-before=\"style-"+ i +"\"]::before {\n\
                    background-image:"+ str + "!important;\n\
@@ -42,7 +42,7 @@ function run() {
    
    if (afters.backgroundImage !== "none") {
      let imgSrc = afters.backgroundImage;
-     str = regExExecute(imgSrc);
+     let str = regExExecute(imgSrc);
      
      let rule = "*[data-after=\"style-"+ i +"\"]::after {\n\
                    background-image:"+ str + "!important;\n\
