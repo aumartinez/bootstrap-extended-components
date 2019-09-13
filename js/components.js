@@ -72,10 +72,8 @@ function addEventListenerToListOnce(list, evt, fn) {
 
 function pullMenuElems(elems) {
   let arr = [];
-  for (let i = 0; i < elems.length; i++) {    
-    for (let j = 0; j < elems[i].childElementCount; j++) {
-      arr.push(elems[i].children[j].children[i]);
-    }
+  for (let i = 0; i < elems.length; i++) {
+    arr = elems[i].querySelectorAll("a");    
   }  
   return arr;
 }
