@@ -119,14 +119,20 @@ p {
   color: #6e7b97;
 }
 
+a.color-primary:hover,
+a.color-primary,
 .color-primary {
   color: #91268C;
 }
 
+a.color-secondary:hover,
+a.color-secondary,
 .color-secondary {
   color: #61035D;
 }
 
+a.color-tertiary:hover,
+a.color-tertiary,
 .color-tertiary {
   color: #BF6ABB;
 }
