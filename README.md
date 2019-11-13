@@ -1,4 +1,4 @@
-# bs-extended
+# bootstrap-extended-components
 BootStrap extended JS and animation components
 
 ## A BootStrap extension application
