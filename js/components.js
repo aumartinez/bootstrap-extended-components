@@ -102,7 +102,7 @@ function run() {
   }
 
   function addClass (elem, myClass) {
-    if (elem.clasList) {
+    if (elem.classList) {
       elem.classList.add(myClass);
     }
     else {
@@ -116,7 +116,7 @@ function run() {
   }
 
   function removeClass (elem, myClass) {
-    if (elem.clasList) {
+    if (elem.classList) {
       elem.classList.remove(myClass);
     }
     else {
